@@ -11,6 +11,8 @@ int init();
 int create_window();
 int create_renderer();
 
+
+extern bool running;
 void run();
 
 void handle_events();
