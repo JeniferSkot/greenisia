@@ -16,5 +16,6 @@ extern Player player;
 
 
 void move_player(int progress);
+void render_player();
 
 #endif // INCLUDE_PLAYER_HPP

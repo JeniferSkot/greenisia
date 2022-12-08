@@ -1,7 +1,7 @@
 #include "global.hpp"
 #include <cstdint>
 #include <SDL2/SDL_keyboard.h>
-#include "Player.hpp"
+#include "player.hpp"
 
 
 void tick(int progress)
