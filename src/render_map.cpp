@@ -12,8 +12,6 @@ static const SDL_Color block_color[] {
 
 void render_map()
 {
-    const SDL_Point block_size {32, 32};
-
     for(int y = 0; y < map.height; y++)
     for(int x = 0; x < map.width; x++)
     {

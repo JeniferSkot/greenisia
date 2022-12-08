@@ -9,6 +9,9 @@ struct Player
     SDL_FPoint pos;
     SDL_Point size {20, 30};
     float speed = 300;
+    float velocity = 0;
+    float mass = 1500;
+    float jump_power = 550;
 };
 
 

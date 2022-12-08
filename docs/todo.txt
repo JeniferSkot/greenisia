@@ -1,6 +1,4 @@
-2022-12-08 world/map/level timer:0h-30m-1s
 2022-12-08 camera timer:0h-3m-39s
-2022-12-08 gravity
 2022-12-08 background layers
 2022-12-08 items
 2022-12-08 inventory
@@ -15,3 +13,6 @@ x 2022-12-08 2022-12-08 render timer:0h-7m-32s
 x 2022-12-08 2022-12-08 tick timer:0h-5m-40s
 x 2022-12-08 2022-12-08 player timer:0h-10m-14s
 x 2022-12-08 2022-12-08 movement timer:0h-26m-21s
+x 2022-12-08 2022-12-08 world/map/level timer:0h-30m-1s
+x 2022-12-08 2022-12-08 gravity timer:0h-40m-0s
+x 2022-12-08 2022-12-08 jump

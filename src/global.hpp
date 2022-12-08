@@ -6,6 +6,9 @@
 extern SDL_Window* window;
 extern SDL_Renderer* rnd;
 
+extern bool running;
+const SDL_Point block_size {32, 32};
+
 
 int init();
 int create_window();
@@ -14,8 +17,6 @@ int create_renderer();
 
 void init_game();
 
-
-extern bool running;
 void run();
 
 void handle_events();
