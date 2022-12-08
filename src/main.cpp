@@ -16,6 +16,8 @@ int main(int, char**)
     if(init())
         return 1;
 
+    init_game();
+
     run();
 
     return 0;

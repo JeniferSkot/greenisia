@@ -12,6 +12,9 @@ int create_window();
 int create_renderer();
 
 
+void init_game();
+
+
 extern bool running;
 void run();
 
