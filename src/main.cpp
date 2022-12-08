@@ -16,7 +16,7 @@ int main(int, char**)
     if(init())
         return 1;
 
-
+    run();
 
     return 0;
 }

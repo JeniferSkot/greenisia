@@ -11,4 +11,12 @@ int init();
 int create_window();
 int create_renderer();
 
+void run();
+
+void handle_events();
+void tick(int time_ms);
+void render();
+
+
+
 #endif // INCLUDE_GLOBAL_HPP
