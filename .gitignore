@@ -1,3 +1,6 @@
 .backup/
 game
+obj/
+dep/
+bin/
 
