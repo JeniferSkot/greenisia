@@ -1,6 +1,9 @@
 #include "global.hpp"
-#include <SDL2/SDL.h>
+#include "camera.hpp"
 #include "map.hpp"
+
+#include <SDL2/SDL.h>
+
 
 static const SDL_Color block_color[] {
     {  0,   0,   0, 255}, // B_AIR
@@ -16,8 +19,8 @@ void render_map()
     for(int x = 0; x < map.width; x++)
     {
         SDL_Rect block_area {
-            x * block_size.x,
-            y * block_size.y,
+            x * block_size.x - camera.x,
+            y * block_size.y - camera.y,
             block_size.x,
             block_size.y
         };
@@ -27,6 +30,6 @@ void render_map()
 
         SDL_SetRenderDrawColor(rnd, c.r, c.g, c.b, c.a);
 
-        SDL_RenderFillRect(rnd, &block_area);
+        SDL_RenderDrawRect(rnd, &block_area);
     }
 }
