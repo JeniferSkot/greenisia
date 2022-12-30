@@ -9,6 +9,9 @@
 2022-12-08 faster compile
 2022-12-08 level editor
 2022-12-08 save/load level
+2022-12-29 different jump height
+2022-12-29 collision with tiles
+2022-12-29 inertion
 x 2022-12-08 2022-12-08 render timer:0h-7m-32s
 x 2022-12-08 2022-12-08 tick timer:0h-5m-40s
 x 2022-12-08 2022-12-08 player timer:0h-10m-14s
