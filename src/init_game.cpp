@@ -5,7 +5,7 @@
 #include "level.hpp"
 
 Player player;
-SDL_Rect camera {0, 0, 800, 600};
+SDL_Rect camera {0, 0, 1200, 800};
 
 
 void init_game()
