@@ -12,18 +12,19 @@ enum Block
 
 struct Map
 {
-    const int width;
-    const int height;
+    int width;
+    int height;
 
     Block* data;
     
+    Map();
     Map(int width, int height);
     ~Map();
 
+    Map& operator =(Map const&);
+
     Block& at(int x, int y);
 };
-
-extern Map map;
 
 
 void render_map();

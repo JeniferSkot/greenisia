@@ -1,7 +1,7 @@
 #include "global.hpp"
 #include "camera.hpp"
 #include "map.hpp"
-
+#include "level.hpp"
 #include <SDL2/SDL.h>
 
 
@@ -15,6 +15,7 @@ static const SDL_Color block_color[] {
 
 void render_map()
 {
+    Map& map = current_level->map;
     for(int y = 0; y < map.height; y++)
     for(int x = 0; x < map.width; x++)
     {

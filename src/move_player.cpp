@@ -5,6 +5,7 @@
 #include <SDL2/SDL_keyboard.h>
 #include "player.hpp"
 #include "map.hpp"
+#include "level.hpp"
 
 static float velocity_limit = 1500;
 
@@ -42,6 +43,7 @@ void move_player(int progress)
         int foothold_block_y = player_bottom / block_size.y;
         
         try {
+            Map& map = current_level->map;
             Block block = map.at(foothold_block_x,
                                  foothold_block_y - 1);
             if(block != B_AIR)
@@ -65,6 +67,7 @@ void move_player(int progress)
 
 bool player_foothold()
 {
+    Map& map = current_level->map;
     for(int x = 0; x < map.width; x++)
     for(int y = 0; y < map.height; y++)
     {
