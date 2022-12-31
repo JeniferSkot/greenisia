@@ -13,18 +13,10 @@ void tutorial::init()
 
 void tutorial::init_map()
 {
-    Map map(25, 19);
+    Map map(50, 20);
 
-    for(int x = 0; x < map.width / 2; x++)
-        map.at(x, 9) = B_SOLID;
-    for(int x = map.width / 2; x < map.width; x++)
-        map.at(x, 13) = B_SOLID;
     for(int x = 0; x < map.width; x++)
-        map.at(x, 18) = B_SOLID;
-
-    map.at(5, 8) = B_SOLID;
-    map.at(15, 17) = B_SOLID;
-
+        map.at(x, 17) = B_SOLID;
 
     level.map = map;
 }
@@ -32,7 +24,11 @@ void tutorial::init_map()
 void tutorial::init_background()
 {
     Background cave;
-    cave.pos = {0, 0};
+    cave.pos = {
+        0, 0,
+        1848 / 2,
+        1700 / 2
+    };
 
     Layer layers[] {
         { -3, "assets/bg/tutorial/cave/-3.png" },

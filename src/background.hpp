@@ -14,8 +14,13 @@ typedef pair<int, string> Layer;
 
 struct Background
 {
-    SDL_Point pos;
+    SDL_Rect pos;
     vector<Layer> layers;
+
+    float scale = 0.07; // per layer index
 };
+
+
+void render_background(int min, int max);
 
 #endif // INCLUDE_BACKGROUND_HPP
