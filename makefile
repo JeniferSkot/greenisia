@@ -89,8 +89,8 @@ ${BDIR}/${ASSETS_DIR}/STAMP: ${ASSETS}
 	cp -r "${ASSETS_DIR}" "${BDIR}/${ASSETS_DIR}"
 	echo "Preparing assets"
 	cd ${BDIR}/${ASSETS_DIR}
-	if [ -f "./prepare.sh" ]; then \
-		./prepare.sh; \
+	if [ -f "${BDIR}/${ASSETS_DIR}/prepare.sh" ]; then \
+		${BDIR}/${ASSETS_DIR}/prepare.sh; \
 	fi
 	touch $@
 
