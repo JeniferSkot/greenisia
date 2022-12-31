@@ -7,7 +7,7 @@
 struct Player
 {
     SDL_FPoint pos;
-    SDL_Point size {20, 30};
+    SDL_Point size {100, 150};
     float speed = 300;
     float velocity = 0;
     float mass = 1500;
