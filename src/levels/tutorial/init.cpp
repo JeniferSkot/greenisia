@@ -1,11 +1,17 @@
 #include "levels/tutorial.hpp"
 #include "level.hpp"
-#include "player.hpp"
+
 
 Level tutorial::level;
 
 
 void tutorial::init()
+{
+    init_map();
+    init_background();
+}
+
+void tutorial::init_map()
 {
     Map map(25, 19);
 
@@ -23,10 +29,28 @@ void tutorial::init()
     level.map = map;
 }
 
-void tutorial::load()
+void tutorial::init_background()
 {
-    current_level = &level;
+    Background cave;
+    cave.pos = {0, 0};
 
-    player.pos.x = 100;
-    player.pos.y = 100;
+    Layer layers[] {
+        { -3, "assets/bg/tutorial/cave/-3.png" },
+        { -2, "assets/bg/tutorial/cave/-2.png" },
+        { -1, "assets/bg/tutorial/cave/-1.png" },
+        { 0, "assets/bg/tutorial/cave/0.png" },
+        { 1, "assets/bg/tutorial/cave/1.png" },
+        { 2, "assets/bg/tutorial/cave/2.png" },
+        { 3, "assets/bg/tutorial/cave/3.png" }
+    };
+    int count = sizeof(layers) / sizeof(layers[0]);
+
+    cave.layers.insert(
+        cave.layers.end(),
+        layers,
+        layers + count
+    );
+
+
+    level.backgrounds.push_back(cave);
 }

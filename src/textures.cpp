@@ -46,6 +46,7 @@ static SDL_Texture* create_texture(string const& path)
 void load_textures(vector<string> const& paths)
 {
     for(string const& path : paths) {
+        cout << "Loading " << path << endl;
         auto old = textures.find(path);
         if(old != textures.end()) { // Already exists.
             SDL_DestroyTexture(old->second);

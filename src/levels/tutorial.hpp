@@ -8,6 +8,9 @@ namespace tutorial
     extern Level level;
 
     void init();
+    void init_map();
+    void init_background();
+
     void load();
 }
 
