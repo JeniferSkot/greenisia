@@ -11,6 +11,8 @@ SDL_Rect camera {0, 0, 1200, 800};
 void init_game()
 {
     init_levels();
+    init_player_sprites();
+    load_player_sprites();
 
 }
 
