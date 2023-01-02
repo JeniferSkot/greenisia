@@ -1,5 +1,6 @@
 #include "map.hpp"
 #include <stdexcept>
+#include <algorithm>
 
 Map::Map() :
     width(0), height(0)

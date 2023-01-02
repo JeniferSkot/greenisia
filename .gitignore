@@ -3,4 +3,7 @@ game
 obj/
 dep/
 bin/
+obj_ems/
+dep_ems/
+bin_ems/
 

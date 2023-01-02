@@ -81,8 +81,8 @@ bool player_foothold()
             continue;
 
         SDL_Rect p_box {
-            player.pos.x,
-            player.pos.y,
+            static_cast<int>(player.pos.x),
+            static_cast<int>(player.pos.y),
             player.size.x,
             player.size.y
         };
