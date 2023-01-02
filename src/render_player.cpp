@@ -26,6 +26,8 @@ void render_player()
 
     SDL_RenderCopy(rnd, texture, nullptr, &sprite_area);
 
-    SDL_SetRenderDrawColor(rnd, 0, 255, 0, 255);
-    SDL_RenderDrawRect(rnd, &player_area);
+    if(SHOW_DEBUG_GRID) {
+        SDL_SetRenderDrawColor(rnd, 0, 255, 0, 255);
+        SDL_RenderDrawRect(rnd, &player_area);
+    }
 }
