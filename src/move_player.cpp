@@ -16,7 +16,7 @@ void move_player(int progress)
 {
     const uint8_t* keyboard = SDL_GetKeyboardState(nullptr);
 
-    float old_pos_x = player.pos.x;
+    player.old_pos = player.pos;
     // X
     if(keyboard[SDL_SCANCODE_A] || keyboard[SDL_SCANCODE_LEFT])
         player.pos.x -= player.speed * progress / 1000.0f;
@@ -24,7 +24,8 @@ void move_player(int progress)
     if(keyboard[SDL_SCANCODE_D] || keyboard[SDL_SCANCODE_RIGHT])
         player.pos.x += player.speed * progress / 1000.0f;
 
-    float delta_pos_x = abs(player.pos.x - old_pos_x);
+    float delta_pos_x =
+        abs(player.pos.x - player.old_pos.x);
     player.sprite_time += delta_pos_x;
 
     // wall collision.

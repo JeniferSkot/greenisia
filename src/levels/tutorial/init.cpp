@@ -31,8 +31,8 @@ void tutorial::init_background()
     Background cave;
     cave.pos = {
         0, 0,
-        1848 / 2,
-        1700 / 2
+        1848,
+        1700
     };
 
     Layer layers[] {

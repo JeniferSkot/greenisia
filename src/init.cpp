@@ -36,7 +36,7 @@ int create_window()
         "My game",
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        1200, 800, // window size
+        1300, 900, // window size
         0 // flags
     );
 

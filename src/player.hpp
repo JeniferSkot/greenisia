@@ -8,10 +8,11 @@ struct SDL_Texture;
 struct Player
 {
     SDL_FPoint pos;
-    SDL_Point size {100, 150};
-    float speed = 450;
+    SDL_FPoint old_pos;
+    SDL_Point size {200, 300};
+    float speed = 1300;
     float velocity = 0;
-    float mass = 1500;
+    float mass = 750;
     float jump_power = 550;
     float sprite_time = 0;
 };

@@ -8,7 +8,7 @@ static float frames_per_width[PS_LAST] {
     5,
 };
 static SDL_Point player_frame_sizes[PS_LAST] {
-    {150, 150}
+    {300, 300}
 };
 
 
