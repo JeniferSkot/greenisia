@@ -1,7 +1,7 @@
 #include "camera.hpp"
 #include "player.hpp"
+#include "map.hpp"
 #include "global.hpp"
-#include <iostream>
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -26,11 +26,15 @@ void move_camera([[maybe_unused]]int progress)
                 - camera.w / 2;
     camera.y = player.pos.y - camera.h / 2;
 
+
+
+
     if(camera.x < 0)
         camera.x = 0;
 
     if(camera.y < 0)
         camera.y = 0;
+
 }
 
 
@@ -43,9 +47,6 @@ void resize_camera()
 #else
     SDL_GetRendererOutputSize(rnd, &camera.w, &camera.h);
 #endif
-    using std::cout;
-    using std::endl;
-    cout << camera.w << "x" << camera.h << endl;
 
     // todo: adjust zoom
 }

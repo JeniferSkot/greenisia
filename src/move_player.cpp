@@ -24,6 +24,9 @@ void move_player(int progress)
     if(keyboard[SDL_SCANCODE_D] || keyboard[SDL_SCANCODE_RIGHT])
         player.pos.x += player.speed * progress / 1000.0f;
 
+    if(player.pos.x < 0)
+        player.pos.x = 0;
+
     float delta_pos_x =
         abs(player.pos.x - player.old_pos.x);
     player.sprite_time += delta_pos_x;
@@ -63,6 +66,12 @@ void move_player(int progress)
     } else if(!keyboard[SDL_SCANCODE_W] && !keyboard[SDL_SCANCODE_UP])
         if(player.velocity < 0)
             player.velocity /= pow(1.03, progress);
+
+    if(player.pos.y < 0) {
+        player.pos.y = 0;
+        if(player.velocity > 0)
+            player.velocity = 0;
+    }
 }
 
 bool player_foothold()
