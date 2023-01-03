@@ -1265,6 +1265,7 @@
                     canvasElement.height = window.innerHeight;
             }
             setInterval(fix_height, 5000);
+            setTimeout(fix_height, 100);
             fix_height()
             document.addEventListener("resize", fix_height)
             window.addEventListener("resize", fix_height)

@@ -12,8 +12,8 @@ struct Player
     SDL_Point size {200, 300};
     float speed = 1300;
     float velocity = 0;
-    float mass = 750;
-    float jump_power = 550;
+    float mass = 2000;
+    float jump_power = 1200;
     float sprite_time = 0;
 };
 
