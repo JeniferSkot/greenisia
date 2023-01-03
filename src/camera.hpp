@@ -8,6 +8,7 @@ extern float zoom;
 
 
 void move_camera(int progress);
+SDL_Point get_camera_target();
 void resize_camera();
 
 #endif // INCLUDE_CAMERA_HPP
