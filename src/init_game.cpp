@@ -6,6 +6,7 @@
 
 Player player;
 SDL_Rect camera {0, 0, 1300, 900};
+float zoom = 1.0f;
 
 
 void init_game()

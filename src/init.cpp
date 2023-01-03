@@ -6,8 +6,6 @@
 using namespace std;
 
 
-
-
 int init()
 {
     if(SDL_Init(SDL_INIT_VIDEO)) {

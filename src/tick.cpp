@@ -10,6 +10,8 @@ void tick(int progress)
     if(progress > 30)
         progress = 30;
     move_player(progress);
+
+    resize_camera();
     move_camera(progress);
 }
 
