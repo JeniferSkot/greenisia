@@ -1,5 +1,4 @@
 #include "map.hpp"
-#include <stdexcept>
 #include <algorithm>
 
 Map::Map() :
@@ -46,11 +45,13 @@ Map& Map::operator =(Map const& other)
 }
 
 
-Block& Map::at(int x, int y)
+Block* Map::at(int x, int y)
 {
-    if(x >= width || y >= height)
-        throw std::runtime_error("This is outside of the map.");
+    if(x < 0) return nullptr;
+    if(y < 0) return nullptr;
+    if(x >= width) return nullptr;
+    if(y >= height) return nullptr;
 
-    return data[y * width + x];
+    return &data[y * width + x];
 }
 

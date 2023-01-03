@@ -27,7 +27,7 @@ void render_map()
         };
 
 
-        SDL_Color c = block_color[map.at(x, y)];
+        SDL_Color c = block_color[*map.at(x, y)];
 
         SDL_SetRenderDrawColor(rnd, c.r, c.g, c.b, c.a);
 

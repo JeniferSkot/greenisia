@@ -23,7 +23,7 @@ struct Map
 
     Map& operator =(Map const&);
 
-    Block& at(int x, int y);
+    Block* at(int x, int y);
 };
 
 

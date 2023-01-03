@@ -47,16 +47,11 @@ void move_player(int progress)
         int foothold_block_x = player_center / block_size.x;
         int foothold_block_y = player_bottom / block_size.y;
         
-        try {
-            Map& map = current_level->map;
-            Block block = map.at(foothold_block_x,
-                                 foothold_block_y - 1);
-            if(block != B_AIR)
-                foothold_block_y--;
-        } catch (std::runtime_error e) {
-            // Ignore this error :D
-            // We don't want block collision outside of the map
-        }
+        Map& map = current_level->map;
+        Block* block = map.at(foothold_block_x,
+                              foothold_block_y - 1);
+        if(block && *block != B_AIR)
+            foothold_block_y--;
 
         player_bottom = foothold_block_y * block_size.y;
         player.pos.y = player_bottom - player.size.y;
@@ -76,8 +71,8 @@ bool player_foothold()
     for(int x = 0; x < map.width; x++)
     for(int y = 0; y < map.height; y++)
     {
-        Block block = map.at(x, y);
-        if(block == B_AIR)
+        Block* block = map.at(x, y);
+        if(!block || *block == B_AIR)
             continue;
 
         SDL_Rect p_box {
