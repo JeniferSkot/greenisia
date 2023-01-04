@@ -1,6 +1,6 @@
 #!/bin/bash
 
-size="1868x1700+0+0"
+size="2300x1730+0+0"
 
 echo "Preparing tutorial/cave backgrounds"
 
@@ -12,9 +12,9 @@ for i in *.png; do
     in="tmp.png"
     out="tmp2.png"
 
-    mv -- "$i" $in
-    magick $in -crop "$size" $out
+    mv "$i" "$in"
+    magick "$in" -crop "$size" "$out"
     rm $in
-    mv -- $out "$i"
+    mv $out "$i"
     echo
 done

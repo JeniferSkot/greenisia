@@ -1,5 +1,6 @@
 #include "camera.hpp"
 #include "render.hpp"
+#include <cmath>
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -33,7 +34,7 @@ void resize_camera()
 void adjust_zoom()
 {
     static float old_zoom = zoom;
-    zoom = std::min(
+    zoom = std::fmin(
         camera.w / target_camera_size.x,
         camera.h / target_camera_size.y
     );

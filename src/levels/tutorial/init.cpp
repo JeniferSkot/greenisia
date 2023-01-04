@@ -34,14 +34,14 @@ void tutorial::init_background()
     Background cave;
     cave.pos = {
         0, 0,
-        1848,
-        1700
+        2300,
+        1730
     };
 
     Layer layers[] {
-        { -3, "assets/bg/tutorial/cave/-3.png" },
-        { -2, "assets/bg/tutorial/cave/-2.png" },
-        { -1, "assets/bg/tutorial/cave/-1.png" },
+        { -3, "assets/bg/tutorial/cave/_3.png" },
+        { -2, "assets/bg/tutorial/cave/_2.png" },
+        { -1, "assets/bg/tutorial/cave/_1.png" },
         { 0, "assets/bg/tutorial/cave/0.png" },
         { 1, "assets/bg/tutorial/cave/1.png" },
         { 2, "assets/bg/tutorial/cave/2.png" },
