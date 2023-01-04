@@ -28,6 +28,17 @@ enum PlayerState
 
 
 void move_player(int progress);
+void move_player_horizontal(int progress, int input_x);
+void move_player_vertical(int progress, int input_y);
+void player_try_jump();
+void player_stop_jump(int progress);
+
+void player_horizontal_collision();
+void player_vertical_collision();
+
+bool is_player_on_ground();
+
+
 void render_player();
 
 void init_player_sprites();

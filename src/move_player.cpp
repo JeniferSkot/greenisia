@@ -1,106 +1,148 @@
 #include "global.hpp"
+#include "keyboard.hpp"
+#include "player.hpp"
+#include "level.hpp"
 #include <cstdint>
 #include <cmath>
-#include <stdexcept>
-#include <SDL2/SDL_keyboard.h>
-#include "player.hpp"
-#include "map.hpp"
-#include "level.hpp"
-
-static float velocity_limit = 1500;
-
-static bool player_foothold();
+#include <iostream>
 
 
 void move_player(int progress)
 {
-    const uint8_t* keyboard = SDL_GetKeyboardState(nullptr);
+    auto input = keyboard_movement_input();
 
     player.old_pos = player.pos;
-    // X
-    if(keyboard[SDL_SCANCODE_A] || keyboard[SDL_SCANCODE_LEFT])
-        player.pos.x -= player.speed * progress / 1000.0f;
 
-    if(keyboard[SDL_SCANCODE_D] || keyboard[SDL_SCANCODE_RIGHT])
-        player.pos.x += player.speed * progress / 1000.0f;
+    move_player_horizontal(progress, input.x);
+    player_horizontal_collision();
 
-    if(player.pos.x < 0)
-        player.pos.x = 0;
-
-    float delta_pos_x =
-        abs(player.pos.x - player.old_pos.x);
-    player.sprite_time += delta_pos_x;
-
-    // wall collision.
-
-    
-
-    // Y
-    player.velocity += player.mass * progress / 1000.0f;
-    if(player.velocity > velocity_limit)
-        player.velocity = velocity_limit;
-    player.pos.y += player.velocity * progress / 1000.0f;
-
-
-    if(player_foothold()) {
-        player.velocity = 0;
-        int player_bottom = player.pos.y + player.size.y;
-        int player_center = player.pos.x + player.size.x / 2;
-
-        int foothold_block_x = player_center / block_size.x;
-        int foothold_block_y = player_bottom / block_size.y;
-        
-        Map& map = current_level->map;
-        Block* block = map.at(foothold_block_x,
-                              foothold_block_y - 1);
-        if(block && *block != B_AIR)
-            foothold_block_y--;
-
-        player_bottom = foothold_block_y * block_size.y;
-        player.pos.y = player_bottom - player.size.y;
-
-
-        if(keyboard[SDL_SCANCODE_W] || keyboard[SDL_SCANCODE_UP])
-            player.velocity = -player.jump_power;
-
-    } else if(!keyboard[SDL_SCANCODE_W] && !keyboard[SDL_SCANCODE_UP])
-        if(player.velocity < 0)
-            player.velocity /= pow(1.03, progress);
-
-    if(player.pos.y < 0) {
-        player.pos.y = 0;
-        if(player.velocity > 0)
-            player.velocity = 0;
-    }
+    move_player_vertical(progress, input.y);
+    player_vertical_collision();
 }
 
-bool player_foothold()
+
+void move_player_horizontal(int progress, int input_x)
 {
-    Map& map = current_level->map;
-    for(int x = 0; x < map.width; x++)
-    for(int y = 0; y < map.height; y++)
-    {
-        Block* block = map.at(x, y);
-        if(!block || *block == B_AIR)
-            continue;
+    if(input_x == 0)
+        return;
 
-        SDL_Rect p_box {
-            static_cast<int>(player.pos.x),
-            static_cast<int>(player.pos.y),
-            player.size.x,
-            player.size.y
-        };
+    float time = progress / 1000.0f;
+    auto& pos = player.pos;
 
-        SDL_Rect b_box {
-            x * block_size.x,
-            y * block_size.y,
-            block_size.x,
-            block_size.y
-        };
+    pos.x += input_x * player.speed * time;
 
-        if(SDL_HasIntersection(&p_box, &b_box))
-            return true;
+    float delta_x = abs(player.old_pos.x - pos.x);
+    player.sprite_time += delta_x;
+}
+
+void move_player_vertical(int progress, int input_y)
+{
+    float time = progress / 1000.0f;
+
+    player.velocity += player.mass * time;
+    player.pos.y += player.velocity * time;
+
+    if(input_y < 0)
+        player_try_jump();
+    else
+        player_stop_jump(progress);
+}
+
+void player_try_jump()
+{
+    if(!is_player_on_ground())
+        return;
+
+    player.velocity = -player.jump_power;
+}
+
+void player_stop_jump(int progress)
+{
+    if(player.velocity < 0)
+        player.velocity /= pow(1.03, progress);
+}
+
+
+void player_horizontal_collision()
+{
+    auto const& map = current_level->map;
+    auto& pos = player.pos;
+    auto const& size = player.size;
+
+    if(pos.x < 0)
+        pos.x = 0;
+
+    auto map_width = map.width * block_size.x;
+    if(pos.x + size.x > map_width)
+        pos.x = map_width - size.x;
+
+
+
+}
+
+
+void player_vertical_collision()
+{
+    auto const& map = current_level->map;
+    auto& pos = player.pos;
+    auto& velocity = player.velocity;
+    auto const& old_pos = player.old_pos;
+    auto const& size = player.size;
+
+    if(pos.y < 0) {
+        pos.y = 0;
+        if(velocity < 0)
+            velocity = 0;
     }
 
-    return false;
+    auto bsize = block_size;
+    auto map_height = map.height * bsize.y;
+    if(pos.y + size.y > map_height) {
+        pos.y = map_height - size.y;
+        if(velocity > 0)
+            velocity = 0;
+    }
+
+
+    float delta_y = pos.y - old_pos.y;
+    if(delta_y > 0) {
+        int y1 = (old_pos.y + size.y) / bsize.y;
+        int y2 = (pos.y + size.y) / bsize.y + 1;
+        int x1 = pos.x / bsize.x;
+        int x2 = (pos.x + size.x) / bsize.x;
+
+        for(int y = y1; y <= y2; y++)
+        for(int x = x1; x <= x2; x++) {
+            Block const* block = map.at(x, y);
+            if(!block || !is_solid(*block))
+                continue;
+           
+            if(pos.y + size.y > y * bsize.y) {
+                pos.y = y * bsize.y - size.y;
+                if(velocity > 0)
+                    velocity = 0;
+                break;
+            }
+        }
+    } else if(delta_y < 0) {
+        int y1 = old_pos.y / bsize.y;
+        int y2 = pos.y / bsize.y;
+        int x1 = pos.x / bsize.x;
+        int x2 = (pos.x + size.x) / bsize.x;
+
+        for(int y = y1; y <= y2; y++)
+        for(int x = x1; x <= x2; x++) {
+            Block const* block = map.at(x, y);
+            if(!block || !is_solid(*block))
+                continue;
+
+            if(pos.y < (y + 1) * bsize.y) {
+                pos.y = (y + 1) * bsize.y;
+                if(velocity < 0)
+                    velocity = 0;
+                break;
+            }
+        }
+    }
 }
+
