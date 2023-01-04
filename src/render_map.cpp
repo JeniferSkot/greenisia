@@ -7,7 +7,7 @@
 
 static const SDL_Color block_color[] {
     {  0,   0,   0, 255}, // B_AIR
-    {  0,   0, 255, 255}, // B_SOLID
+    {  0, 255, 255, 255}, // B_SOLID
     {255, 255,   0, 255}, // B_DANGER
     {255,   0,   0, 255}, // B_DEATH
 };
@@ -32,7 +32,7 @@ void render_map()
 
         SDL_SetRenderDrawColor(rnd, c.r, c.g, c.b, c.a);
 
-        if(SHOW_DEBUG_GRID)
+        if(show_debug_grid)
             SDL_RenderDrawRect(rnd, &block_area);
     }
 }

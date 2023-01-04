@@ -7,7 +7,12 @@ extern SDL_Window* window;
 extern SDL_Renderer* rnd;
 
 const SDL_Point block_size {64, 64};
-const bool SHOW_DEBUG_GRID = true;
+
+#ifdef DEBUG_GRID 
+extern bool show_debug_grid;
+#else
+const bool show_debug_grid = false;
+#endif
 
 void render();
 

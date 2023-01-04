@@ -38,7 +38,7 @@ void render_player()
     }
     
 
-    if(SHOW_DEBUG_GRID) { // Player hitbox
+    if(show_debug_grid) { // Player hitbox
         SDL_Rect player_area {
             static_cast<int>(player.pos.x),
             static_cast<int>(player.pos.y),
