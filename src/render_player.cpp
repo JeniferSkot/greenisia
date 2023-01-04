@@ -1,4 +1,4 @@
-#include "global.hpp"
+#include "render.hpp"
 #include "player.hpp"
 #include "camera.hpp"
 #include "textures.hpp"

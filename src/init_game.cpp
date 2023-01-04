@@ -1,4 +1,5 @@
 #include "global.hpp"
+#include "render.hpp"
 #include "player.hpp"
 #include "map.hpp"
 #include "camera.hpp"
@@ -10,7 +11,7 @@ using std::endl;
 
 
 Player player;
-SDL_Rect camera {0, 0, window_size.x, window_size.y};
+SDL_Rect camera;
 float zoom = 1.0f;
 
 

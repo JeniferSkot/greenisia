@@ -1,4 +1,4 @@
-#include "global.hpp"
+#include "render.hpp"
 #include "camera.hpp"
 #include "background.hpp"
 #include "level.hpp"

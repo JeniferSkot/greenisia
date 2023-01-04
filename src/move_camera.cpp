@@ -1,7 +1,7 @@
 #include "camera.hpp"
 #include "player.hpp"
+#include "render.hpp"
 #include "level.hpp"
-#include "global.hpp"
 
 static SDL_Point get_player_center();
 static float get_nearest_floor();

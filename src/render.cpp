@@ -1,4 +1,4 @@
-#include "global.hpp"
+#include "render.hpp"
 #include <SDL2/SDL.h>
 #include "player.hpp"
 #include "map.hpp"

@@ -1,4 +1,4 @@
-#include "global.hpp"
+#include "render.hpp"
 #include "textures.hpp"
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_render.h>

@@ -1,6 +1,6 @@
-#include "global.hpp"
-#include "keyboard.hpp"
 #include "player.hpp"
+#include "keyboard.hpp"
+#include "render.hpp"
 #include "level.hpp"
 #include <cstdint>
 #include <cmath>

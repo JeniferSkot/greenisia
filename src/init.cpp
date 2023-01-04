@@ -2,8 +2,16 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "global.hpp"
+#include "render.hpp"
 
 using namespace std;
+
+static const SDL_Point window_size {
+    1680 * 7 / 10,
+    1050 * 7 / 10
+};
+static int create_window();
+static int create_renderer();
 
 
 int init()

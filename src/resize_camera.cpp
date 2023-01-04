@@ -1,5 +1,5 @@
-#include "global.hpp"
 #include "camera.hpp"
+#include "render.hpp"
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
