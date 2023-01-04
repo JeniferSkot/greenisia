@@ -11,13 +11,12 @@ void render_player()
     SDL_Point offset, tex_size;
     auto texture = get_player_sprite(&offset, &tex_size);
     SDL_Rect sprite_area {
-        static_cast<int>(player.pos.x)
-            + offset.x - camera.x,
-        static_cast<int>(player.pos.y)
-            + offset.y - camera.y,
+        static_cast<int>(player.pos.x) + offset.x,
+        static_cast<int>(player.pos.y) + offset.y,
         tex_size.x,
         tex_size.y
     };
+    apply_camera(sprite_area);
 
     float delta_x = player.pos.x - player.old_pos.x;
     if(delta_x < 0)
@@ -32,11 +31,12 @@ void render_player()
 
     if(SHOW_DEBUG_GRID) { // Player hitbox
         SDL_Rect player_area {
-            static_cast<int>(player.pos.x) - camera.x,
-            static_cast<int>(player.pos.y) - camera.y,
+            static_cast<int>(player.pos.x),
+            static_cast<int>(player.pos.y),
             player.size.x,
             player.size.y
         };
+        apply_camera(player_area);
 
         SDL_SetRenderDrawColor(rnd, 0, 255, 0, 255);
         SDL_RenderDrawRect(rnd, &player_area);

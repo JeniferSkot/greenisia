@@ -17,11 +17,12 @@ void render_background(int min, int max)
         float scale = bg.scale * z;
 
         SDL_Rect dest {
-            bg.pos.x - camera.x,
-            bg.pos.y - camera.y,
+            bg.pos.x,
+            bg.pos.y,
             bg.pos.w,
             bg.pos.h
         };
+        apply_camera(dest);
 
         float x_pos = (float)dest.x / camera.w;
         float y_pos = (float)dest.y / camera.h;

@@ -1,5 +1,6 @@
 #include "global.hpp"
 #include "camera.hpp"
+#include <iostream>
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -26,18 +27,23 @@ void resize_camera()
     SDL_GetRendererOutputSize(rnd, &camera.w, &camera.h);
 #endif
 
-    adjust_zoom();
+    if(camera.w > 0 && camera.h > 9)
+        adjust_zoom();
 }
 
 void adjust_zoom()
 {
-    int target_x = 1920;
-    int target_y = 1080;
+    float target_x = 1920;
+    float target_y = 1080;
 
-    float rate = std::min(
+    static float old_zoom = zoom;
+    zoom = std::min(
         camera.w / target_x,
         camera.h / target_y
     );
 
-    
+    if(old_zoom != zoom) {
+        old_zoom = zoom;
+        std::cout << "Zoom: " << zoom << std::endl;
+    }
 }

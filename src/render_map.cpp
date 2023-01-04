@@ -20,11 +20,12 @@ void render_map()
     for(int x = 0; x < map.width; x++)
     {
         SDL_Rect block_area {
-            x * block_size.x - camera.x,
-            y * block_size.y - camera.y,
+            x * block_size.x,
+            y * block_size.y,
             block_size.x,
             block_size.y
         };
+        apply_camera(block_area);
 
 
         SDL_Color c = block_color[*map.at(x, y)];
