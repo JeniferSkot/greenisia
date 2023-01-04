@@ -34,8 +34,9 @@ int create_window()
         "My game",
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        1300, 900, // window size
-        0 // flags
+        window_size.x,
+        window_size.y,
+        0 //SDL_WINDOW_RESIZABLE // flags
     );
 
     if(window == nullptr) { 

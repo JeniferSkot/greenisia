@@ -6,6 +6,7 @@
 extern SDL_Rect camera;
 extern float zoom;
 
+const SDL_FPoint target_camera_size {1680, 1050};
 
 void move_camera(int progress);
 SDL_Point get_camera_target();

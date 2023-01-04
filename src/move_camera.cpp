@@ -16,11 +16,17 @@ void move_camera([[maybe_unused]]int progress)
     camera.x = (camera.x * delay + target_pos.x * speed);
     camera.y = (camera.y * delay + target_pos.y * speed);
 
-    if(camera.x < 0)
-        camera.x = 0;
+    
+    SDL_FPoint limits {
+        target_camera_size.x * (1 - zoom) / 2,
+        target_camera_size.y * (1 - zoom) / 2
+    };
 
-    if(camera.y < 0)
-        camera.y = 0;
+    if(camera.x < limits.x)
+        camera.x = limits.x;
+
+    if(camera.y < limits.y)
+        camera.y = limits.y;
 }
 
 

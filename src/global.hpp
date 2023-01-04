@@ -10,6 +10,7 @@ extern bool running;
 const SDL_Point block_size {64, 64};
 
 const bool SHOW_DEBUG_GRID = true;
+const SDL_Point window_size {1680 - 168*3, 1050 - 105*3};
 
 
 int init();

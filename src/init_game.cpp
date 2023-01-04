@@ -5,7 +5,7 @@
 #include "level.hpp"
 
 Player player;
-SDL_Rect camera {0, 0, 1300, 900};
+SDL_Rect camera {0, 0, window_size.x, window_size.y};
 float zoom = 1.0f;
 
 

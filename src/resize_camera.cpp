@@ -33,13 +33,10 @@ void resize_camera()
 
 void adjust_zoom()
 {
-    float target_x = 1920;
-    float target_y = 1080;
-
     static float old_zoom = zoom;
     zoom = std::min(
-        camera.w / target_x,
-        camera.h / target_y
+        camera.w / target_camera_size.x,
+        camera.h / target_camera_size.y
     );
 
     if(old_zoom != zoom) {
