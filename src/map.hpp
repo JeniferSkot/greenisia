@@ -1,13 +1,7 @@
 #ifndef INCLUDE_MAP_HPP
 #define INCLUDE_MAP_HPP
 
-enum Block
-{
-    B_AIR,
-    B_SOLID,
-    B_DANGER,
-    B_DEATH,
-};
+#include "block.hpp"
 
 
 struct Map
@@ -24,6 +18,7 @@ struct Map
     Map& operator =(Map const&);
 
     Block* at(int x, int y);
+    Block const* at(int x, int y) const;
 };
 
 

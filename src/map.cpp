@@ -55,3 +55,13 @@ Block* Map::at(int x, int y)
     return &data[y * width + x];
 }
 
+Block const* Map::at(int x, int y) const
+{
+    if(x < 0) return nullptr;
+    if(y < 0) return nullptr;
+    if(x >= width) return nullptr;
+    if(y >= height) return nullptr;
+
+    return &data[y * width + x];
+}
+
