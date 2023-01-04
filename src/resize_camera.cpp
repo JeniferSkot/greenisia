@@ -1,6 +1,5 @@
 #include "global.hpp"
 #include "camera.hpp"
-#include <iostream>
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>
@@ -41,6 +40,5 @@ void adjust_zoom()
 
     if(old_zoom != zoom) {
         old_zoom = zoom;
-        std::cout << "Zoom: " << zoom << std::endl;
     }
 }

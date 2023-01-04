@@ -6,7 +6,6 @@
 2022-12-08 sprite system
 2022-12-08 level editor
 2022-12-08 save/load level
-2022-12-29 collision with tiles
 2022-12-29 inertion
 x 2022-12-08 2022-12-08 render timer:0h-7m-32s
 x 2022-12-08 2022-12-08 tick timer:0h-5m-40s
@@ -19,3 +18,4 @@ x 2022-12-31 2022-12-08 camera timer:0h-34m-28s
 x 2022-12-31 2022-12-08 background layers timer:0h-59m-12s
 x 2022-12-31 2022-12-08 faster compile
 x 2022-12-31 2022-12-29 different jump height
+x 2023-01-04 2022-12-29 collision with tiles
