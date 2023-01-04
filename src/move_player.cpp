@@ -68,15 +68,52 @@ void player_horizontal_collision()
     auto const& map = current_level->map;
     auto& pos = player.pos;
     auto const& size = player.size;
+    auto const& old_pos = player.old_pos;
 
     if(pos.x < 0)
         pos.x = 0;
 
-    auto map_width = map.width * block_size.x;
+    auto bsize = block_size;
+    auto map_width = map.width * bsize.x;
     if(pos.x + size.x > map_width)
         pos.x = map_width - size.x;
 
 
+    int y1 = pos.y / bsize.y;
+    int y2 = (pos.y + size.y - 1) / bsize.y;
+
+    float delta_x = pos.x - old_pos.x;
+    if(delta_x > 0) { // Right
+        int x1 = (old_pos.x + size.x) / bsize.x;
+        int x2 = (pos.x + size.x) / bsize.x;
+
+        for(int x = x1; x <= x2; x++)
+        for(int y = y1; y <= y2; y++) {
+            Block const* block = map.at(x, y);
+            if(!block || !is_solid(*block))
+                continue;
+
+            if(pos.x + size.x > x * bsize.x - 1) {
+                pos.x = x * bsize.x - size.x - 1;
+                return;
+            }
+        }
+    } else if(delta_x < 0) { // Left
+        int x1 = old_pos.x / bsize.x;
+        int x2 = pos.x / bsize.x;
+
+        for(int x = x1; x >= x2; x--)
+        for(int y = y1; y <= y2; y++) {
+            Block const* block = map.at(x, y);
+            if(!block || !is_solid(*block))
+                continue;
+
+            if(pos.x < (x + 1) * bsize.x) {
+                pos.x = (x + 1) * bsize.x;
+                return;
+            }
+        }
+    }
 
 }
 
@@ -104,12 +141,13 @@ void player_vertical_collision()
     }
 
 
+    int x1 = pos.x / bsize.x;
+    int x2 = (pos.x + size.x) / bsize.x;
+
     float delta_y = pos.y - old_pos.y;
-    if(delta_y > 0) {
+    if(delta_y > 0) { // Down
         int y1 = (old_pos.y + size.y) / bsize.y;
-        int y2 = (pos.y + size.y) / bsize.y + 1;
-        int x1 = pos.x / bsize.x;
-        int x2 = (pos.x + size.x) / bsize.x;
+        int y2 = (pos.y + size.y) / bsize.y;
 
         for(int y = y1; y <= y2; y++)
         for(int x = x1; x <= x2; x++) {
@@ -121,16 +159,14 @@ void player_vertical_collision()
                 pos.y = y * bsize.y - size.y;
                 if(velocity > 0)
                     velocity = 0;
-                break;
+                return;
             }
         }
-    } else if(delta_y < 0) {
+    } else if (delta_y < 0) { // Up
         int y1 = old_pos.y / bsize.y;
         int y2 = pos.y / bsize.y;
-        int x1 = pos.x / bsize.x;
-        int x2 = (pos.x + size.x) / bsize.x;
 
-        for(int y = y1; y <= y2; y++)
+        for(int y = y1; y >= y2; y--)
         for(int x = x1; x <= x2; x++) {
             Block const* block = map.at(x, y);
             if(!block || !is_solid(*block))
@@ -140,7 +176,7 @@ void player_vertical_collision()
                 pos.y = (y + 1) * bsize.y;
                 if(velocity < 0)
                     velocity = 0;
-                break;
+                return;
             }
         }
     }

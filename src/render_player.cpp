@@ -2,6 +2,7 @@
 #include "player.hpp"
 #include "camera.hpp"
 #include "textures.hpp"
+#include "keyboard.hpp"
 
 #include <SDL2/SDL.h>
 
@@ -18,15 +19,23 @@ void render_player()
     };
     apply_camera(sprite_area);
 
-    float delta_x = player.pos.x - player.old_pos.x;
-    if(delta_x < 0)
+    int motion_x = keyboard_movement_input().x;
+
+    static bool flip_h = false;
+    if(motion_x > 0)
+        flip_h = false;
+    else if(motion_x < 0)
+        flip_h = true;
+
+    if(flip_h) {
         SDL_RenderCopyEx(rnd, texture,
                          nullptr, &sprite_area,
                          0, nullptr,
                          SDL_FLIP_HORIZONTAL);
-    else
+    } else {
         SDL_RenderCopy(rnd, texture,
                        nullptr, &sprite_area);
+    }
     
 
     if(SHOW_DEBUG_GRID) { // Player hitbox

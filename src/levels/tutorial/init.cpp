@@ -23,6 +23,9 @@ void tutorial::init_map()
     for(int x = 0; x < map.width; x++)
         *map.at(x, 17) = B_SOLID;
 
+    for(int x = 0; x < map.width / 3; x++)
+        *map.at(x, 10) = B_SOLID;
+
     level.map = map;
 }
 
