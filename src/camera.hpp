@@ -16,4 +16,9 @@ void apply_camera(SDL_Rect&);
 void apply_camera(SDL_Point&);
 void apply_camera(int& x, int& y);
 
+void undo_camera(SDL_Rect&);
+void undo_camera(SDL_Point&);
+void undo_camera(int& x, int& y);
+// Used for screen to game coordinates.
+
 #endif // INCLUDE_CAMERA_HPP
