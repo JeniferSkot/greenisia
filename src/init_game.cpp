@@ -4,6 +4,7 @@
 #include "map.hpp"
 #include "camera.hpp"
 #include "level.hpp"
+#include "level_editor.hpp"
 #include <iostream>
 
 using std::cout;
@@ -13,6 +14,10 @@ using std::endl;
 Player player;
 SDL_Rect camera;
 float zoom = 1.0f;
+
+#ifdef LEVEL_EDITOR
+bool level_editor::active = false;
+#endif
 
 
 void init_game()
