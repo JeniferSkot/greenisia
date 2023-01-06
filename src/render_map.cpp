@@ -14,12 +14,18 @@ void render_map()
         SDL_Rect block_area {
             x * block_size.x,
             y * block_size.y,
-            block_size.x + 1,
-            block_size.y + 1
+            block_size.x,
+            block_size.y
         };
-        apply_camera(block_area);
-        block_area.x--;
-        block_area.y--;
+        SDL_Point next = {
+            (x + 1) * block_size.x,
+            (y + 1) * block_size.y
+        };
+        apply_camera(block_area.x, block_area.y);
+        apply_camera(next);
+
+        block_area.w = next.x - block_area.x - 1;
+        block_area.h = next.y - block_area.y - 1;
 
 
         SDL_Color c = block_colors[*map.at(x, y)];
