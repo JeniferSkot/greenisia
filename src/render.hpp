@@ -8,7 +8,13 @@ extern SDL_Renderer* rnd;
 
 const SDL_Point block_size {64, 64};
 
-#ifdef DEBUG_GRID 
+#ifdef LEVEL_EDITOR
+    #ifndef DEBUG_GRID
+        #define DEBUG_GRID
+    #endif
+#endif
+
+#ifdef DEBUG_GRID
 extern bool show_debug_grid;
 #else
 const bool show_debug_grid = false;
