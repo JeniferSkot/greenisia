@@ -46,7 +46,7 @@ void undo_camera(int& x, int& y)
 {
     SDL_Point mid {
         camera.x + camera.w / 2,
-        camera.x + camera.h / 2
+        camera.y + camera.h / 2
     };
 
     x -= camera.w / 2;
