@@ -5,7 +5,6 @@
 #include <SDL2/SDL_rect.h>
 
 struct SDL_MouseButtonEvent;
-struct SDL_MouseMotionEvent;
 
 
 namespace level_editor
@@ -23,7 +22,6 @@ namespace level_editor
 
     void on_mousedown(SDL_MouseButtonEvent&);
     void on_mouseup(SDL_MouseButtonEvent&);
-    void on_mousemotion(SDL_MouseMotionEvent&);
 
     void render();
     void tick(int progress);

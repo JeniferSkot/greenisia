@@ -3,10 +3,12 @@
 #include "level.hpp"
 #include <SDL2/SDL_events.h>
 #include <iostream>
+#include "keyboard.hpp"
 
 namespace LE = level_editor;
 using std::cout;
 using std::endl;
+
 
 enum MouseMode {
     MM_NONE,
@@ -26,11 +28,13 @@ void LE::print_help()
     cout << "====== Level Editor help ======" << endl;
     cout << "Press L to disable level editor" << endl;
     cout << endl;
-    cout << "Pick a block from the menu." << endl;
+    cout << "Menu Left Click: action" << endl;
     cout << endl;
     cout << "Left click/drag: place block" << endl;
     cout << "Right click/drag: clear block" << endl;
+    cout << endl;
     cout << "Middle click+drag: move camera" << endl;
+    cout << "Movement keys: move camera" << endl;
     cout << "===============================" << endl;
     cout << endl;
 }
@@ -86,10 +90,11 @@ void LE::tick(int)
 
     } else if(mode != MM_NONE)
         apply_action(mouse.x, mouse.y);
-}
 
-void LE::on_mousemotion(SDL_MouseMotionEvent& ev)
-{
+
+    SDL_Point input = keyboard_movement_input();    
+    camera.x += input.x * 25;
+    camera.y += input.y * 25;
 }
 
 
