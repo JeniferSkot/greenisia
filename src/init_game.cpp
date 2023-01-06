@@ -32,6 +32,14 @@ void init_game()
 
     cout << "Game loaded!" << endl;
 
+#ifdef QUICK_QUIT
+    cout << endl;
+    cout << "*****************************" << endl;
+    cout << "Built with QUICK_QUIT flag" << endl;
+    cout << "Press Q to close the game" << endl;
+    cout << "*****************************" << endl;
+#endif
+
 #ifdef USE_ESDF
     cout << endl;
     cout << "*****************************" << endl;

@@ -46,6 +46,11 @@ void on_keydown(SDL_KeyboardEvent& ev)
     [[maybe_unused]]
     const auto scancode = ev.keysym.scancode;
 
+#ifdef QUICK_QUIT
+    if(scancode == SDL_SCANCODE_Q)
+        running = false;
+#endif
+
 #ifdef DEBUG_GRID
     if(scancode == SDL_SCANCODE_G) {
         show_debug_grid = !show_debug_grid;
