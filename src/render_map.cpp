@@ -5,14 +5,6 @@
 #include <SDL2/SDL.h>
 
 
-static const SDL_Color block_color[] {
-    { 32,  32,  32, 255}, // B_AIR
-    {  0, 255, 255, 255}, // B_SOLID
-    {255, 255,   0, 255}, // B_DANGER
-    {255,   0,   0, 255}, // B_DEATH
-};
-
-
 void render_map()
 {
     Map& map = current_level->map;
@@ -30,7 +22,7 @@ void render_map()
         block_area.y--;
 
 
-        SDL_Color c = block_color[*map.at(x, y)];
+        SDL_Color c = block_colors[*map.at(x, y)];
 
         SDL_SetRenderDrawColor(rnd, c.r, c.g, c.b, c.a);
 
