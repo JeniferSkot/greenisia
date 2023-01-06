@@ -4,6 +4,7 @@
 #include <SDL2/SDL_events.h>
 #include <iostream>
 #include "keyboard.hpp"
+#include "render.hpp"
 
 namespace LE = level_editor;
 using std::cout;
@@ -104,14 +105,22 @@ void apply_action(int x, int y)
 
     undo_camera(x, y);
 
-    x = x / map.width;
-    y = y / map.height;
+    x = x / block_size.x;
+    y = y / block_size.y;
 
+    cout << "Target: " << x << "x" << y << endl;
     Block* block = map.at(x, y);
     if(!block)
         return;
 
     switch(mode) {
+        case MM_CLEARING:
+            *block = B_AIR;
+            break;
+
+        case MM_PLACING:
+            break;
+
         default:
             break;
     }
