@@ -3,7 +3,9 @@
 #include "player.hpp"
 #include "map.hpp"
 #include "background.hpp"
+#include "level_editor.hpp"
 
+namespace LE = level_editor;
 
 void render()
 {
@@ -15,6 +17,9 @@ void render()
     render_background(1, 10);
 
     render_map();
+
+    if(LE::active)
+        LE::render();
 
     SDL_RenderPresent(rnd);
 }

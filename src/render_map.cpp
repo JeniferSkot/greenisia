@@ -6,7 +6,7 @@
 
 
 static const SDL_Color block_color[] {
-    {  0,   0,   0, 255}, // B_AIR
+    { 32,  32,  32, 255}, // B_AIR
     {  0, 255, 255, 255}, // B_SOLID
     {255, 255,   0, 255}, // B_DANGER
     {255,   0,   0, 255}, // B_DEATH
@@ -22,10 +22,12 @@ void render_map()
         SDL_Rect block_area {
             x * block_size.x,
             y * block_size.y,
-            block_size.x,
-            block_size.y
+            block_size.x + 1,
+            block_size.y + 1
         };
         apply_camera(block_area);
+        block_area.x--;
+        block_area.y--;
 
 
         SDL_Color c = block_color[*map.at(x, y)];
