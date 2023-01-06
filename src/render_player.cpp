@@ -3,8 +3,10 @@
 #include "camera.hpp"
 #include "textures.hpp"
 #include "keyboard.hpp"
-
+#include "level_editor.hpp"
 #include <SDL2/SDL.h>
+
+namespace LE = level_editor;
 
 
 void render_player()
@@ -22,10 +24,11 @@ void render_player()
     int motion_x = keyboard_movement_input().x;
 
     static bool flip_h = false;
-    if(motion_x > 0)
-        flip_h = false;
-    else if(motion_x < 0)
-        flip_h = true;
+    if(!LE::active)
+        if(motion_x > 0)
+            flip_h = false;
+        else if(motion_x < 0)
+            flip_h = true;
 
     if(flip_h) {
         SDL_RenderCopyEx(rnd, texture,
