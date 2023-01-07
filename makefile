@@ -3,33 +3,22 @@ VERSION_MAJOR=0
 VERSION_MINOR=0
 
 CXX=g++
+LDXX=ldd
+
 CONFIG = \
 	-D QUICK_QUIT \
 	-D DEBUG_GRID \
 	-D USE_ESDF \
 	-D LEVEL_EDITOR \
-	#-D CORE_CONFIG \
-	#-D PROJECT_NAME=\"${NAME}\"\
-	#-D VERSION_MAJOR=${VERSION_MAJOR} \
-	#-D VERSION_MINOR=${VERSION_MINOR} \
-	#-D WINDOW_WIDTH=800 \
-	#-D WINDOW_HEIGHT=600 \
-	#-D VERBOSE_UNHANDLED_EVENTS \
-	#-D USE_SDL2_IMAGE \
-	#-D USE_SDL2_NET \
-	#-D USE_SDL2_TTF
+	#
 
 __CXXFLAGS=-Og -g -std=c++17 \
 	-Wall -Wextra -pedantic \
-	-pthread \
 	-lSDL2 \
 	-lSDL2_image \
-	#-lSDL2_ttf \
-	#-lSDL2_mixer \
-	#-lSDL2_net
-
-LDXX=ldd
-
+	-lSDL2_ttf \
+	# -pthread \
+	#
 
 IDIR=src
 SDIR=src
