@@ -23,8 +23,11 @@ namespace level_editor
     void on_mousedown(SDL_MouseButtonEvent&);
     void on_mouseup(SDL_MouseButtonEvent&);
 
-    void render();
     void tick(int progress);
+    void render();
+    void render_brush_menu();
+    void render_toolbox();
+    void render_border();
 }
 
 #endif // INCLUDE_LEVEL_EDITOR_HPP

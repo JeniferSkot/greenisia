@@ -7,8 +7,14 @@
 namespace LE = level_editor;
 
 
-// Renders block selection
 void LE::render()
+{
+    render_border();
+    render_brush_menu();
+    render_toolbox();
+}
+
+void LE::render_border()
 {
     auto& map = current_level->map;
 
@@ -23,4 +29,16 @@ void LE::render()
     SDL_SetRenderDrawColor(rnd, 255, 255, 0, 255);
     SDL_RenderFillRect(rnd, &top_border);
     SDL_RenderFillRect(rnd, &left_border);
+}
+
+
+void LE::render_brush_menu()
+{
+
+}
+
+
+void LE::render_toolbox()
+{
+
 }
