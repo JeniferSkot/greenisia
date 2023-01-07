@@ -1,10 +1,10 @@
 #include "level_editor.hpp"
 #include "camera.hpp"
 #include "level.hpp"
-#include <SDL2/SDL_events.h>
-#include <iostream>
 #include "keyboard.hpp"
 #include "render.hpp"
+#include <SDL2/SDL_events.h>
+#include <iostream>
 
 namespace LE = level_editor;
 using std::cout;
@@ -19,7 +19,7 @@ enum MouseMode {
 };
 
 static MouseMode mode = MM_NONE;
-static void apply_action(int x, int y);
+static void paint(int x, int y);
 static SDL_Point mouse {0, 0};
 
 
@@ -58,7 +58,7 @@ void LE::on_mousedown(SDL_MouseButtonEvent& ev)
     mouse = {ev.x, ev.y};
 
     if(mode != MM_MOVING)
-        apply_action(ev.x, ev.y);
+        paint(ev.x, ev.y);
 }
 
 void LE::on_mouseup(SDL_MouseButtonEvent&)
@@ -90,7 +90,7 @@ void LE::tick(int)
         stored.y -= y_motion;
 
     } else if(mode != MM_NONE)
-        apply_action(mouse.x, mouse.y);
+        paint(mouse.x, mouse.y);
 
 
     SDL_Point input = keyboard_movement_input();    
@@ -99,7 +99,7 @@ void LE::tick(int)
 }
 
 
-void apply_action(int x, int y)
+void paint(int x, int y)
 {
     auto& map = current_level->map;
 
@@ -108,7 +108,6 @@ void apply_action(int x, int y)
     x = x / block_size.x;
     y = y / block_size.y;
 
-    cout << "Target: " << x << "x" << y << endl;
     Block* block = map.at(x, y);
     if(!block)
         return;
