@@ -81,12 +81,13 @@ void player_horizontal_collision()
     int y1 = pos.y / bsize.y;
     int y2 = (pos.y + size.y - 1) / bsize.y;
     const float bslope = atan2(bsize.y, bsize.x);
-    const float climb_cost = 1 - sin(bslope);
 
     float delta_x = pos.x - old_pos.x;
     if(delta_x > 0) { // Right
         int x1 = (old_pos.x + size.x) / bsize.x;
-        int x2 = (pos.x + size.x) / bsize.x;
+        int x2 = (pos.x + size.x) / bsize.x + 1;
+        if(player.velocity == 0)
+            x2++;
 
         for(int x = x1; x <= x2; x++)
         for(int y = y1; y <= y2; y++) {
@@ -103,13 +104,8 @@ void player_horizontal_collision()
                         break;
                     }
                 }
-                if(can_go_up) {
-                    pos.y -= bsize.y;
-                    pos.x -= bsize.y * (climb_cost);
-                    x2 = (pos.x + size.x) / bsize.x;
-                    y2--; y1--;
-                    continue;
-                }
+                if(can_go_up)
+                    player.velocity -= player.mass / 10;
             }
 
             if(pos.x + size.x > x * bsize.x - 1) {
@@ -119,7 +115,9 @@ void player_horizontal_collision()
         }
     } else if(delta_x < 0) { // Left
         int x1 = old_pos.x / bsize.x;
-        int x2 = pos.x / bsize.x;
+        int x2 = pos.x / bsize.x - 1;
+        if(player.velocity == 0)
+            x2--;
 
         for(int x = x1; x >= x2; x--)
         for(int y = y1; y <= y2; y++) {
@@ -136,13 +134,8 @@ void player_horizontal_collision()
                         break;
                     }
                 }
-                if(can_go_up) {
-                    pos.y -= bsize.y;
-                    pos.x += bsize.y * (climb_cost);
-                    x2 = pos.x  / bsize.x;
-                    y2--; y1--;
-                    continue;
-                }
+                if(can_go_up)
+                    player.velocity -= player.mass / 10;
             }
 
             if(pos.x < (x + 1) * bsize.x) {

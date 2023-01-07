@@ -9,7 +9,8 @@
 2022-12-08 level editor (save/load)
 2023-01-07 level editor (entities)
 2023-01-07 level editor (level selection)
-2023-01-07 generating and printing text
+2023-01-07 generating and printing text timer:0h-5m-0s
+2023-01-07 level editor (lines) timer:0h-55m-1s
 x 2022-12-08 2022-12-08 render timer:0h-7m-32s
 x 2022-12-08 2022-12-08 tick timer:0h-5m-40s
 x 2022-12-08 2022-12-08 player timer:0h-10m-14s
