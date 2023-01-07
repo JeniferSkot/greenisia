@@ -17,6 +17,8 @@ namespace level_editor
 
     extern SDL_Rect menu_area;
     extern Block brush;
+    const auto BRUSH_MENU_TEXTURE
+        = "assets/menu/brushes_menu.png";
 
     void print_help();
 
