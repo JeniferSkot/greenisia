@@ -45,19 +45,25 @@ static SDL_Texture* create_texture(string const& path)
 
 void load_textures(vector<string> const& paths)
 {
-    for(string const& path : paths) {
-        cout << "Loading " << path << endl;
-        auto old = textures.find(path);
-        if(old != textures.end()) { // Already exists.
-            SDL_DestroyTexture(old->second);
-            textures.erase(old);
-        }
+    for(string const& path : paths)
+        load_texture(path);
 
-        auto texture = create_texture(path);
-        if(texture != nullptr)
-            textures[path] = texture;
-    }
 }
+
+void load_texture(string const& path)
+{
+    cout << "Loading " << path << endl;
+    auto old = textures.find(path);
+    if(old != textures.end()) { // Already exists.
+        SDL_DestroyTexture(old->second);
+        textures.erase(old);
+    }
+
+    auto texture = create_texture(path);
+    if(texture != nullptr)
+        textures[path] = texture;
+}
+
 
 void clear_textures()
 {
@@ -80,5 +86,11 @@ SDL_Texture* get_texture(string const& path)
     }
 
     return pair->second;
+}
+
+
+bool is_texture_loaded(string const& path)
+{
+    return textures.find(path) != textures.end();
 }
 
