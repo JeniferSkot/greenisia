@@ -24,11 +24,12 @@ void render_player()
     int motion_x = keyboard_movement_input().x;
 
     static bool flip_h = false;
-    if(!LE::active)
+    if(!LE::active) {
         if(motion_x > 0)
             flip_h = false;
         else if(motion_x < 0)
             flip_h = true;
+    }
 
     if(flip_h) {
         SDL_RenderCopyEx(rnd, texture,
