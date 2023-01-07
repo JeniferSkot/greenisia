@@ -14,8 +14,8 @@ using std::endl;
 enum MouseMode {
     MM_NONE,
     MM_MOVING,
-    MM_PLACING,
-    MM_CLEARING
+    MM_BRUSH1,
+    MM_BRUSH2
 };
 
 static MouseMode mode = MM_NONE;
@@ -44,10 +44,10 @@ void LE::on_mousedown(SDL_MouseButtonEvent& ev)
 {
     switch(ev.button) {
         case SDL_BUTTON_LEFT:
-            mode = MM_PLACING;
+            mode = MM_BRUSH1;
             break;
         case SDL_BUTTON_RIGHT:
-            mode = MM_CLEARING;
+            mode = MM_BRUSH2;
             break;
         case SDL_BUTTON_MIDDLE:
             mode = MM_MOVING;
@@ -113,11 +113,12 @@ void paint(int x, int y)
         return;
 
     switch(mode) {
-        case MM_CLEARING:
-            *block = B_AIR;
+        case MM_BRUSH1:
+            *block = LE::brush1;
             break;
 
-        case MM_PLACING:
+        case MM_BRUSH2:
+            *block = LE::brush2;
             break;
 
         default:
