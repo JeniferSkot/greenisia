@@ -1,6 +1,6 @@
 #include "global.hpp"
-#include "level_editor.hpp"
 #include "render.hpp"
+#include "level_editor.hpp"
 #include <SDL2/SDL.h>
 #include <iostream>
 

@@ -1,6 +1,5 @@
 #include "camera.hpp"
 #include "player.hpp"
-#include "render.hpp"
 #include "level.hpp"
 
 static SDL_Point get_player_center();

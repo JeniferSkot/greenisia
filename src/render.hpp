@@ -1,12 +1,12 @@
 #ifndef INCLUDE_RENDER_HPP
 #define INCLUDE_RENDER_HPP
 
-#include <SDL2/SDL.h>
+#include <SDL2/SDL_render.h>
+
+struct SDL_Window;
 
 extern SDL_Window* window;
 extern SDL_Renderer* rnd;
-
-const SDL_Point block_size {64, 64};
 
 #ifdef LEVEL_EDITOR
     #ifndef DEBUG_GRID

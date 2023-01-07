@@ -13,18 +13,18 @@ void tutorial::init()
 
 void tutorial::init_map()
 {
-    Map map(50, 20);
+    Map map(200, 80);
 
     for(int y = 0; y < map.height; y++) {
         *map.at(0, y) = B_SOLID;
-        *map.at(30, y) = B_SOLID;
+        *map.at(120, y) = B_SOLID;
     }
 
     for(int x = 0; x < map.width; x++)
-        *map.at(x, 17) = B_SOLID;
+        *map.at(x, 68) = B_SOLID;
 
     for(int x = 0; x < map.width / 3; x++)
-        *map.at(x, 10) = B_SOLID;
+        *map.at(x, 40) = B_SOLID;
 
     level.map = map;
 }
