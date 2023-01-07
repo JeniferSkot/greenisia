@@ -10,7 +10,6 @@
 2023-01-07 level editor (entities)
 2023-01-07 level editor (level selection)
 2023-01-07 generating and printing text
-2023-01-07 walking uphill timer:0h-15m-1s
 x 2022-12-08 2022-12-08 render timer:0h-7m-32s
 x 2022-12-08 2022-12-08 tick timer:0h-5m-40s
 x 2022-12-08 2022-12-08 player timer:0h-10m-14s
@@ -25,3 +24,4 @@ x 2022-12-31 2022-12-29 different jump height
 x 2023-01-04 2022-12-29 collision with tiles
 x 2023-01-07 2022-12-08 level editor timer:1h-30m-2s
 x 2023-01-07 2023-01-07 level editor(brushes)
+x 2023-01-07 2023-01-07 walking uphill timer:0h-54m-32s

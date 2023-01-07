@@ -80,6 +80,8 @@ void player_horizontal_collision()
 
     int y1 = pos.y / bsize.y;
     int y2 = (pos.y + size.y - 1) / bsize.y;
+    const float bslope = atan2(bsize.y, bsize.x);
+    const float climb_cost = 1 - sin(bslope);
 
     float delta_x = pos.x - old_pos.x;
     if(delta_x > 0) { // Right
@@ -91,6 +93,24 @@ void player_horizontal_collision()
             Block const* block = map.at(x, y);
             if(!block || !is_solid(*block))
                 continue;
+
+            if(y == y2) { // climb
+                bool can_go_up = true;
+                for(int i = x1; i <= x2; i++) {
+                    Block const* b2 = map.at(i, y1 - 1);
+                    if(!b2 || is_solid(*b2)) {
+                        can_go_up = false;
+                        break;
+                    }
+                }
+                if(can_go_up) {
+                    pos.y -= bsize.y;
+                    pos.x -= bsize.y * (climb_cost);
+                    x2 = (pos.x + size.x) / bsize.x;
+                    y2--; y1--;
+                    continue;
+                }
+            }
 
             if(pos.x + size.x > x * bsize.x - 1) {
                 pos.x = x * bsize.x - size.x - 1;
@@ -106,6 +126,24 @@ void player_horizontal_collision()
             Block const* block = map.at(x, y);
             if(!block || !is_solid(*block))
                 continue;
+
+            if(y == y2) { // climb
+                bool can_go_up = true;
+                for(int i = x1; i >= x2; i--) {
+                    Block const* b2 = map.at(i, y1 - 1);
+                    if(!b2 || is_solid(*b2)) {
+                        can_go_up = false;
+                        break;
+                    }
+                }
+                if(can_go_up) {
+                    pos.y -= bsize.y;
+                    pos.x += bsize.y * (climb_cost);
+                    x2 = pos.x  / bsize.x;
+                    y2--; y1--;
+                    continue;
+                }
+            }
 
             if(pos.x < (x + 1) * bsize.x) {
                 pos.x = (x + 1) * bsize.x;
