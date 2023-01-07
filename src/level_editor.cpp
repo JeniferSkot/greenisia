@@ -42,6 +42,12 @@ void LE::print_help()
 
 void LE::on_mousedown(SDL_MouseButtonEvent& ev)
 {
+    if(in_menu(ev.x, ev.y)) {
+        on_menu_click(ev.x, ev.y, ev.button);
+        mode = MM_NONE;
+        return;
+    }
+
     switch(ev.button) {
         case SDL_BUTTON_LEFT:
             mode = MM_BRUSH1;
@@ -96,6 +102,8 @@ void LE::tick(int)
     SDL_Point input = keyboard_movement_input();    
     camera.x += input.x * 25;
     camera.y += input.y * 25;
+
+    position_menus();
 }
 
 
@@ -114,11 +122,11 @@ void paint(int x, int y)
 
     switch(mode) {
         case MM_BRUSH1:
-            *block = LE::brush1;
+            *block = LE::brushes[0];
             break;
 
         case MM_BRUSH2:
-            *block = LE::brush2;
+            *block = LE::brushes[1];
             break;
 
         default:

@@ -2,6 +2,7 @@
 #include "level.hpp"
 #include "render.hpp"
 #include "camera.hpp"
+#include "textures.hpp"
 #include <SDL2/SDL_events.h>
 
 namespace LE = level_editor;
@@ -34,7 +35,46 @@ void LE::render_border()
 
 void LE::render_brush_menu()
 {
+    SDL_Color bg {0, 128, 255, 127};
+    SDL_SetRenderDrawColor(rnd, bg.r, bg.g, bg.b, bg.a);
 
+    SDL_SetRenderDrawBlendMode(rnd, SDL_BLENDMODE_BLEND);
+    SDL_RenderFillRect(rnd, &brush_menu);
+    SDL_RenderFillRect(rnd, &toolbar);
+    SDL_SetRenderDrawBlendMode(rnd, SDL_BLENDMODE_NONE);
+
+    for(int i = 0; i < B_LAST; i++) {
+        auto c = block_colors[i];
+        int row = i / 10;
+        int col = i % 10;
+        SDL_Rect brush {
+            8 + (8 + 48) * col,
+            8 + (8 + 48) * row,
+            48, 48
+        };
+
+        SDL_SetRenderDrawColor(rnd, c.r, c.g, c.b, c.a);
+        SDL_RenderFillRect(rnd, &brush);
+
+        int brush_c = sizeof brushes / sizeof brushes[0];
+        for(int b = 0; b < brush_c; b++) {
+            if(i != brushes[b])
+                continue;
+
+            auto texture_path = BRUSH_MENU_TEXTURE;
+            if(!is_texture_loaded(texture_path))
+                load_texture(texture_path);
+            auto texture = get_texture(texture_path);
+
+            SDL_Rect src {
+                b * 48,
+                0,
+                48,
+                48
+            };
+            SDL_RenderCopy(rnd, texture, &src, &brush);
+        }
+    }
 }
 
 

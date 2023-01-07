@@ -15,8 +15,7 @@ namespace level_editor
     const bool active = false;
 #endif
 
-    extern SDL_Rect menu_area;
-    extern Block brush1, brush2;
+    extern Block brushes[2];
     const auto BRUSH_MENU_TEXTURE
         = "assets/menu/brushes_menu.png";
 
@@ -30,6 +29,16 @@ namespace level_editor
     void render_brush_menu();
     void render_toolbox();
     void render_border();
+
+    /* MENU */
+    extern SDL_Rect brush_menu;
+    extern SDL_Rect toolbar;
+
+    void position_menus();
+
+    bool in_menu(int x, int y);
+    void on_menu_click(int x, int y, int button);
+    void pick_brush(int x, int y, int brush_index);
 }
 
 #endif // INCLUDE_LEVEL_EDITOR_HPP
