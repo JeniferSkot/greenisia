@@ -4,7 +4,7 @@
 #include <SDL2/SDL_pixels.h>
 #include <SDL2/SDL_rect.h>
 
-enum Block
+enum Block : uint8_t
 {
     B_AIR,
     B_SOLID,
@@ -21,7 +21,7 @@ const SDL_Color block_colors[B_LAST] {
     {255,   0,   0, 255}, // B_DEATH
 };
 
-const SDL_Point block_size {16, 16};
+const SDL_Point block_size {24, 24};
 
 bool is_solid(Block);
 
