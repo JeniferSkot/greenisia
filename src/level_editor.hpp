@@ -45,6 +45,10 @@ namespace level_editor
     bool in_menu(int x, int y);
     void on_menu_click(int x, int y, int button);
     void pick_brush(int x, int y, int brush_index);
+    void click_toolbar(int x, int y);
+
+    void save_level();
+    void save_map();
 }
 
 #endif // INCLUDE_LEVEL_EDITOR_HPP

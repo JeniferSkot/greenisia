@@ -60,7 +60,9 @@ void LE::on_menu_click(int x, int y, int button)
     }
 
     if(SDL_PointInRect(&point, &toolbar)) {
-        
+        x -= toolbar.x;
+        y -= toolbar.y;
+        click_toolbar(x, y);
         return;
     }
 
@@ -88,3 +90,7 @@ void LE::pick_brush(int x, int y, int brush_index)
         brush = static_cast<Block>(choice);
 }
 
+void LE::click_toolbar(int, int)
+{
+    save_level();
+}
