@@ -110,7 +110,7 @@ void player_horizontal_collision()
             if(pos.x + size.x > x * bsize.x - 1) {
                 pos.x = x * bsize.x - size.x - 1;
                 return;
-            }
+            } else break;
         }
     } else if(delta_x < 0) { // Left
         int x1 = old_pos.x / bsize.x;
@@ -140,7 +140,7 @@ void player_horizontal_collision()
             if(pos.x < (x + 1) * bsize.x) {
                 pos.x = (x + 1) * bsize.x;
                 return;
-            }
+            } else break;
         }
     }
 
