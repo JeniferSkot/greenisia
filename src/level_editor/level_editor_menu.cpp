@@ -9,8 +9,8 @@ using std::cout;
 using std::endl;
 
 Block LE::brushes[2] = {B_SOLID, B_AIR};
-SDL_Rect LE::brush_menu {0, 0, 0, 0};
-SDL_Rect LE::toolbar {0, 0, 0, 0};
+SDL_Rect LE::brush_menu {8, 8, 0, 0};
+SDL_Rect LE::toolbar {0, 8, 48, 48};
 
 
 bool LE::in_menu(int x, int y)
@@ -41,7 +41,7 @@ void LE::position_menus()
 
 
     /* Tools */
-
+    toolbar.x = camera.w - toolbar.w - 8;
 }
 
 

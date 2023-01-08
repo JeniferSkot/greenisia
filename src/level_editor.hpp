@@ -31,8 +31,9 @@ namespace level_editor
 
     void tick(int progress);
     void render();
+    void render_menu_backgrounds();
     void render_brush_menu();
-    void render_toolbox();
+    void render_toolbar();
     void render_border();
 
     /* MENU */

@@ -11,8 +11,9 @@ namespace LE = level_editor;
 void LE::render()
 {
     render_border();
+    render_menu_backgrounds();
     render_brush_menu();
-    render_toolbox();
+    render_toolbar();
 }
 
 void LE::render_border()
@@ -33,7 +34,7 @@ void LE::render_border()
 }
 
 
-void LE::render_brush_menu()
+void LE::render_menu_backgrounds()
 {
     SDL_Color bg {0, 128, 255, 127};
     SDL_SetRenderDrawColor(rnd, bg.r, bg.g, bg.b, bg.a);
@@ -42,14 +43,18 @@ void LE::render_brush_menu()
     SDL_RenderFillRect(rnd, &brush_menu);
     SDL_RenderFillRect(rnd, &toolbar);
     SDL_SetRenderDrawBlendMode(rnd, SDL_BLENDMODE_NONE);
+}
 
+
+void LE::render_brush_menu()
+{
     for(int i = 0; i < B_LAST; i++) {
         auto c = block_colors[i];
         int row = i / 10;
         int col = i % 10;
         SDL_Rect brush {
-            8 + (8 + 48) * col,
-            8 + (8 + 48) * row,
+            brush_menu.x + 4 + (8 + 48) * col,
+            brush_menu.y + 4 + (8 + 48) * row,
             48, 48
         };
 
@@ -78,7 +83,18 @@ void LE::render_brush_menu()
 }
 
 
-void LE::render_toolbox()
+void LE::render_toolbar()
 {
+    SDL_Rect dest {
+        toolbar.x, toolbar.y,
+        48, 48
+    };
+    SDL_Rect src { 0, 0, 48, 48 };
 
+    auto texture_path = TOOLBAR_TEXTURE;
+    if(!is_texture_loaded(texture_path))
+        load_texture(texture_path);
+    auto texture = get_texture(texture_path);
+
+    SDL_RenderCopy(rnd, texture, &src, &dest);
 }

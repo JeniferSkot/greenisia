@@ -12,6 +12,7 @@ const SDL_FPoint target_camera_size {1680, 1050};
 void move_camera(int progress);
 SDL_Point get_camera_target();
 void resize_camera();
+void adjust_zoom();
 
 void apply_camera(SDL_Rect&);
 void apply_camera(SDL_Point&);

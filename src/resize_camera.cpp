@@ -14,8 +14,6 @@ EM_JS(int, canvas_get_height, (), {
 #endif
 
 
-static void adjust_zoom();
-
 
 void resize_camera()
 {
@@ -26,9 +24,6 @@ void resize_camera()
 #else
     SDL_GetRendererOutputSize(rnd, &camera.w, &camera.h);
 #endif
-
-    if(camera.w > 0 && camera.h > 9)
-        adjust_zoom();
 }
 
 void adjust_zoom()
