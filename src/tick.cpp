@@ -13,12 +13,13 @@ void tick(int progress)
     if(progress > 30)
         progress = 30;
 
-    resize_camera();
 
     if(LE::active) {
         LE::tick(progress);
     } else {
         move_player(progress);
+
+        resize_camera();
         move_camera(progress);
     }
 }

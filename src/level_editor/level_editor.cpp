@@ -34,11 +34,13 @@ void LE::print_help()
     cout << endl;
     cout << "Menu Left Click: action" << endl;
     cout << endl;
-    cout << "Left click/drag: place block" << endl;
-    cout << "Right click/drag: clear block" << endl;
+    cout << "Left click/drag: place block1" << endl;
+    cout << "Right click/drag: place block2" << endl;
     cout << endl;
     cout << "Middle click+drag: move camera" << endl;
     cout << "Movement keys: move camera" << endl;
+    cout << endl;
+    cout << "Scroll up/down: zoom in/out" << endl;
     cout << "===============================" << endl;
     cout << endl;
 }
@@ -84,6 +86,16 @@ void LE::on_mouseup(SDL_MouseButtonEvent& ev)
     if(!in_menu(ev.x, ev.y))
         last_mouseup = {ev.x, ev.y};
 }
+
+void LE::on_mousewheel(SDL_MouseWheelEvent& ev)
+{
+    zoom += ev.y * 0.1f;
+    if(zoom < 0.3f)
+        zoom = 0.3f;
+    if(zoom > 1.8f)
+        zoom = 1.8f;
+}
+
 
 void LE::tick(int)
 {

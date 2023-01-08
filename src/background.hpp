@@ -17,7 +17,7 @@ struct Background
     SDL_Rect pos;
     vector<Layer> layers;
 
-    float scale = 0.07; // per layer index
+    float scale = 0.05; // per layer index
 };
 
 

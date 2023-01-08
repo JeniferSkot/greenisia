@@ -32,6 +32,11 @@ void handle_events()
                 LE::on_mouseup(ev.button);
             break;
 
+        case SDL_MOUSEWHEEL:
+            if(LE::active)
+                LE::on_mousewheel(ev.wheel);
+            break;
+
 
         case SDL_KEYDOWN:
             on_keydown(ev.key);
