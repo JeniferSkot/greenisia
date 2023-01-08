@@ -31,8 +31,9 @@ _CXXFLAGS = ${__CXXFLAGS} ${CONFIG} -I${IDIR} -I${ODIR}/${IDIR} ${CXXFLAGS}
 SRC = $(shell find ${SDIR} -type f -name '*.cpp' -o -name ".backup" -prune -type f)
 OBJ = $(patsubst ${SDIR}/%.cpp,${ODIR}/%.o,${SRC})
 DEP = $(patsubst ${SDIR}/%.cpp,${DDIR}/%.dep,${SRC})
-ASSETS = $(shell find ${ASSETS_DIR} -type f -o -name ".backup" -prune -type f)
+ASSETS = $(shell find ${ASSETS_DIR} -type f -not -name "*.map" -o -name ".backup" -prune -type f)
 #NEW_ASSETS = $(patsubst %,${BDIR}/%, ${ASSETS})
+
 
 ifndef VERBOSE
 .SILENT:
