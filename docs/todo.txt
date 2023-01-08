@@ -6,7 +6,7 @@
 2022-12-08 sprite system
 2022-12-29 inertion
 2023-01-06 mobile controls
-2022-12-08 level editor (save/load) timer:0h-20m-1s
+2022-12-08 level editor (save/load) timer:0h-25m-16s
 2023-01-07 level editor (entities)
 2023-01-07 level editor (level selection)
 2023-01-07 generating and printing text timer:0h-5m-0s
