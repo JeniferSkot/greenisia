@@ -33,18 +33,21 @@ namespace level_editor
     void render();
     void render_menu_backgrounds();
     void render_brush_menu();
+    void render_level_select();
     void render_toolbar();
     void render_border();
 
     /* MENU */
     extern SDL_Rect brush_menu;
     extern SDL_Rect toolbar;
+    extern SDL_Rect level_select;
 
     void position_menus();
 
     bool in_menu(int x, int y);
     void on_menu_click(int x, int y, int button);
     void pick_brush(int x, int y, int brush_index);
+    void click_level_select(int x, int y);
     void click_toolbar(int x, int y);
 
     void save_level();

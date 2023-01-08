@@ -9,8 +9,9 @@ using std::cout;
 using std::endl;
 
 Block LE::brushes[2] = {B_SOLID, B_AIR};
-SDL_Rect LE::brush_menu {8, 8, 0, 0};
-SDL_Rect LE::toolbar {0, 8, 48, 48};
+SDL_Rect LE::brush_menu { 8, 8, 0, 0 };
+SDL_Rect LE::toolbar { 0, 8, 96, 48 };
+SDL_Rect LE::level_select { 8, 0, 48, 48 };
 
 
 bool LE::in_menu(int x, int y)
@@ -18,7 +19,8 @@ bool LE::in_menu(int x, int y)
     SDL_Point point {x, y};
     SDL_Rect* menus[] {
         &brush_menu,
-        &toolbar
+        &toolbar,
+        &level_select
     };
 
     for(auto menu : menus)
@@ -42,6 +44,9 @@ void LE::position_menus()
 
     /* Tools */
     toolbar.x = camera.w - toolbar.w - 8;
+
+    /* Level Select */
+    level_select.y = camera.h - level_select.h - 8;
 }
 
 
@@ -59,13 +64,19 @@ void LE::on_menu_click(int x, int y, int button)
         return;
     }
 
+    if(SDL_PointInRect(&point, &level_select)) {
+        x -= level_select.x;
+        y -= level_select.y;
+        click_level_select(x, y);
+        return;
+    }
+
     if(SDL_PointInRect(&point, &toolbar)) {
         x -= toolbar.x;
         y -= toolbar.y;
         click_toolbar(x, y);
         return;
     }
-
 }
 
 void LE::pick_brush(int x, int y, int brush_index)
@@ -90,7 +101,24 @@ void LE::pick_brush(int x, int y, int brush_index)
         brush = static_cast<Block>(choice);
 }
 
-void LE::click_toolbar(int, int)
+void LE::click_level_select(int x, int)
 {
-    save_level();
+    if(x <= 48)
+        save_level();
+}
+
+
+void LE::click_toolbar(int x, int)
+{
+    switch(x / 48) {
+    case 0: // Create
+        
+        break;
+
+    case 1:
+        
+
+    default:
+        break;
+    }
 }
