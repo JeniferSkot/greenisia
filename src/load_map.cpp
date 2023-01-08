@@ -9,7 +9,9 @@ using std::endl;
 
 Map load_map(string path)
 {
+    cout << "Loading map " << path << endl;
     std::ifstream file(path);
+
     if(!file) {
         cout << "Failed opening map " << path << endl;
         return {};
