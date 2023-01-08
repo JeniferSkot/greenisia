@@ -115,8 +115,9 @@ void LE::click_toolbar(int x, int)
         
         break;
 
-    case 1:
+    case 1: // Move
         
+        break;
 
     default:
         break;

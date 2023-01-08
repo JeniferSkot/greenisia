@@ -55,8 +55,8 @@ void LE::render_brush_menu()
         int row = i / 10;
         int col = i % 10;
         SDL_Rect brush {
-            brush_menu.x + 4 + (8 + 48) * col,
-            brush_menu.y + 4 + (8 + 48) * row,
+            brush_menu.x + 8 + (8 + 48) * col,
+            brush_menu.y + 8 + (8 + 48) * row,
             48, 48
         };
 
