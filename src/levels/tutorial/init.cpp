@@ -13,6 +13,8 @@ void tutorial::init()
 
 void tutorial::init_map()
 {
+    level.map_file = "assets/maps/tutorial.map";
+
     Map map(200, 80);
 
     for(int y = 0; y < map.height; y++) {

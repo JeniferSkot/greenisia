@@ -4,12 +4,16 @@
 #include "map.hpp"
 #include "background.hpp"
 #include <vector>
+#include <string>
 
 using std::vector;
+using std::string;
 
 
 struct Level
 {
+    string map_file;
+
     Map map;
     vector<Background> backgrounds;
 };
