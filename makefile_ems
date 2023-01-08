@@ -6,7 +6,7 @@ CXX=em++
 LDXX=em++
 
 CONFIG = \
-	-D DEBUG_GRID \
+	#-D DEBUG_GRID \
 	#-D USE_ESDF \
 	#
 
@@ -22,7 +22,7 @@ __CXXFLAGS=-O2 -g -std=c++17 \
 __LDFLAGS=${__CXXFLAGS} \
 	-L${HOME}/workspace/cpp/sdl/libs-emsdk/build/ \
 	-sASSERTIONS=1 \
-	-sINITIAL_MEMORY=104857600
+	-sINITIAL_MEMORY=131072000
 	#-sALLOW_MEMORY_GROWTH=1 
 
 
