@@ -68,6 +68,10 @@ clean:
 run: build
 	echo "Running ${NAME}"
 	cd ${BDIR} && ./${NAME} $(ARGS)
+	if [ -f "${BDIR}/${ASSETS_DIR}/post_run.sh" ]; then \
+		echo "Executing post_run.sh"; \
+		cd ${BDIR} && ./${ASSETS_DIR}/post_run.sh; \
+	fi
 
 ctags: ${SRC}
 	echo "Generating ctags"
