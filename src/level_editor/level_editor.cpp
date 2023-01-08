@@ -3,6 +3,8 @@
 #include "level.hpp"
 #include "keyboard.hpp"
 #include <SDL2/SDL_events.h>
+#include <SDL2/SDL_keyboard.h>
+#include <cmath>
 #include <iostream>
 
 namespace LE = level_editor;
@@ -19,7 +21,9 @@ enum MouseMode {
 
 static MouseMode mode = MM_NONE;
 static void paint(int x, int y);
+static void paint_line(SDL_Point p1, SDL_Point p2);
 static SDL_Point mouse {0, 0};
+static SDL_Point last_mouseup {0, 0};
 
 
 void LE::print_help()
@@ -62,13 +66,21 @@ void LE::on_mousedown(SDL_MouseButtonEvent& ev)
     }
     mouse = {ev.x, ev.y};
 
-    if(mode != MM_MOVING)
-        paint(ev.x, ev.y);
+    if(mode != MM_MOVING) {
+        auto keys = SDL_GetKeyboardState(nullptr);
+        bool shift = keys[SDL_SCANCODE_LSHIFT]
+            || keys[SDL_SCANCODE_RSHIFT];
+        if(shift)
+            paint_line(last_mouseup, mouse);
+        else
+            paint(ev.x, ev.y);
+    }
 }
 
-void LE::on_mouseup(SDL_MouseButtonEvent&)
+void LE::on_mouseup(SDL_MouseButtonEvent& ev)
 {
     mode = MM_NONE;
+    last_mouseup = {ev.x, ev.y};
 }
 
 void LE::tick(int)
@@ -79,7 +91,6 @@ void LE::tick(int)
         mouse2.x - mouse.x,
         mouse2.y - mouse.y,
     };
-    mouse = mouse2;
 
     if(mode == MM_MOVING) {
         static SDL_FPoint stored {0, 0};
@@ -95,7 +106,7 @@ void LE::tick(int)
         stored.y -= y_motion;
 
     } else if(mode != MM_NONE)
-        paint(mouse.x, mouse.y);
+        paint_line(mouse, mouse2);
 
 
     SDL_Point input = keyboard_movement_input();    
@@ -103,6 +114,8 @@ void LE::tick(int)
     camera.y += input.y * 25;
 
     position_menus();
+
+    mouse = mouse2;
 }
 
 
@@ -130,5 +143,101 @@ void paint(int x, int y)
 
         default:
             break;
+    }
+}
+
+
+void paint_line(SDL_Point p1, SDL_Point p2)
+{
+    auto& map = current_level->map;
+
+    undo_camera(p1);
+    p1.x = p1.x / block_size.x;
+    p1.y = p1.y / block_size.y;
+
+    undo_camera(p2);
+    p2.x = p2.x / block_size.x;
+    p2.y = p2.y / block_size.y;
+
+
+    using std::abs;
+
+    SDL_Point delta { p2.x - p1.x, p2.y - p1.y };
+
+    if(delta.x == 0 && delta.y == 0) {
+        Block* block = map.at(p1.x, p1.y);
+        if(!block)
+            return;
+
+        switch(mode) {
+            case MM_BRUSH1:
+                *block = LE::brushes[0];
+                return;
+
+            case MM_BRUSH2:
+                *block = LE::brushes[1];
+                return;
+
+            default:
+                return;
+        }
+    }
+
+    if(abs(delta.x) > abs(delta.y)) {
+        // Horizontal line
+        if(p2.x < p1.x) {
+            // Should go right
+            delta.x *= -1;
+            delta.y *= -1;
+            std::swap(p1, p2);
+        }
+
+        for(int x = p1.x; x <= p2.x; x++) {
+            int y = p1.y + (x - p1.x) * delta.y/delta.x;
+            Block* block = map.at(x, y);
+            if(!block)
+                continue;
+
+            switch(mode) {
+                case MM_BRUSH1:
+                    *block = LE::brushes[0];
+                    break;
+
+                case MM_BRUSH2:
+                    *block = LE::brushes[1];
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    } else {
+        // Vertical line
+        if(p2.y < p1.y) {
+            // Should go down
+            delta.x *= -1;
+            delta.y *= -1;
+            std::swap(p1, p2);
+        }
+
+        for(int y = p1.y; y <= p2.y; y++) {
+            int x = p1.x + (y - p1.y) * delta.x/delta.y;
+            Block* block = map.at(x, y);
+            if(!block)
+                continue;
+
+            switch(mode) {
+                case MM_BRUSH1:
+                    *block = LE::brushes[0];
+                    break;
+
+                case MM_BRUSH2:
+                    *block = LE::brushes[1];
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }
