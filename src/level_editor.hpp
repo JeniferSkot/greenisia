@@ -19,6 +19,9 @@ namespace level_editor
     const auto BRUSH_MENU_TEXTURE
         = "assets/menu/brushes_menu.png";
 
+    const auto TOOLBAR_TEXTURE
+        = "assets/menu/level_edit_menu.png";
+
     void print_help();
 
     void on_mousedown(SDL_MouseButtonEvent&);
