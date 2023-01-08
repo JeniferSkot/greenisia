@@ -80,7 +80,6 @@ void player_horizontal_collision()
 
     int y1 = pos.y / bsize.y;
     int y2 = (pos.y + size.y - 1) / bsize.y;
-    const float bslope = atan2(bsize.y, bsize.x);
 
     float delta_x = pos.x - old_pos.x;
     if(delta_x > 0) { // Right
