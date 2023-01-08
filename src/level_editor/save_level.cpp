@@ -1,5 +1,6 @@
 #include "level_editor.hpp"
 #include "level.hpp"
+#include "storage.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -7,31 +8,10 @@ namespace LE = level_editor;
 using std::cout;
 using std::endl;
 
-static const uint32_t DATA_VERSION = 1;
-
 
 void LE::save_level()
 {
     save_map();
-}
-
-
-static void write32(std::ofstream& file, uint32_t data)
-{
-    char input[4] {
-        static_cast<char>(data >> 24),
-        static_cast<char>(data >> 16),
-        static_cast<char>(data >> 8),
-        static_cast<char>(data)
-    };
-
-    file.write(&input[0], 4);
-}
-
-static void write8(std::ofstream& file, uint8_t data)
-{
-    char input = static_cast<char>(data);
-    file.write(&input, 1);
 }
 
 
@@ -48,7 +28,7 @@ void LE::save_map()
         return;
     }
 
-    write32(file, DATA_VERSION);
+    write32(file, MAP_DATA_VERSION);
     write32(file, map.width);
     write32(file, map.height);
 
