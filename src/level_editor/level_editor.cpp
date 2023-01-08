@@ -80,7 +80,9 @@ void LE::on_mousedown(SDL_MouseButtonEvent& ev)
 void LE::on_mouseup(SDL_MouseButtonEvent& ev)
 {
     mode = MM_NONE;
-    last_mouseup = {ev.x, ev.y};
+
+    if(!in_menu(ev.x, ev.y))
+        last_mouseup = {ev.x, ev.y};
 }
 
 void LE::tick(int)
