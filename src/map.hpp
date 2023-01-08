@@ -2,6 +2,9 @@
 #define INCLUDE_MAP_HPP
 
 #include "block.hpp"
+#include <string>
+
+using std::string;
 
 
 struct Map
@@ -13,6 +16,8 @@ struct Map
     
     Map();
     Map(int width, int height);
+    Map(Map const&);
+    Map(Map&& other);
     ~Map();
 
     Map& operator =(Map const&);
@@ -23,5 +28,7 @@ struct Map
 
 
 void render_map();
+
+Map load_map(string path);
 
 #endif // INCLUDE_MAP_HPP

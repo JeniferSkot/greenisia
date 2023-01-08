@@ -17,6 +17,20 @@ Map::Map(int w, int h) :
         data[i] = B_AIR;
 }
 
+Map::Map(Map const& other)
+{
+    *this = other;
+}
+
+Map::Map(Map&& other)
+{
+    width = other.width;
+    height = other.height;
+
+    this->data = other.data;
+    other.data = nullptr;
+}
+
 
 Map::~Map()
 {

@@ -15,6 +15,7 @@ void tutorial::init_map()
 {
     level.map_file = "assets/maps/tutorial.map";
 
+/*
     Map map(200, 80);
 
     for(int y = 0; y < map.height; y++) {
@@ -31,7 +32,8 @@ void tutorial::init_map()
     for(int i = 0; i < 30; i++)
         *map.at(80 + i, 68 - i) = B_SOLID;
 
-    level.map = map;
+*/
+    level.map = load_map(level.map_file);
 }
 
 void tutorial::init_background()
