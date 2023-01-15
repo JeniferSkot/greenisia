@@ -12,17 +12,17 @@ CONFIG = \
 
 __CXXFLAGS=-O2 -g -std=c++17 \
 	-Wall -Wextra -pedantic \
-	-I${HOME}/workspace/cpp/sdl/libs-emsdk/include/ \
 	-sUSE_SDL=2 \
 	-sUSE_SDL_TTF=2 \
 	-sUSE_SDL_IMAGE=2 \
 	-sSDL2_IMAGE_FORMATS='["png"]' \
+	#-I${HOME}/workspace/cpp/sdl/libs-emsdk/include/ \
 	#
 
 __LDFLAGS=${__CXXFLAGS} \
-	-L${HOME}/workspace/cpp/sdl/libs-emsdk/build/ \
 	-sASSERTIONS=1 \
 	-sINITIAL_MEMORY=131072000 \
+	#-L${HOME}/workspace/cpp/sdl/libs-emsdk/build/ \
 	#-sALLOW_MEMORY_GROWTH=1 
 	#-sENVIRONMENT=web \
 
