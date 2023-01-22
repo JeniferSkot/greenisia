@@ -17,6 +17,7 @@ namespace level_editor
 #endif
 
     extern Block brushes[2];
+
     const auto BRUSH_MENU_TEXTURE
         = "assets/menu/brushes_menu.png";
 
@@ -52,6 +53,15 @@ namespace level_editor
 
     void save_level();
     void save_map();
+
+    /* RESIZING */
+    extern SDL_Point map_edge_markers;
+    bool in_board(int x, int y);
+
+    const bool CONFIRM_DATA_LOSS = false;
+    const int resize_delta_limit = 32;
+    void resize_map(SDL_Point size);
+
 }
 
 #endif // INCLUDE_LEVEL_EDITOR_HPP

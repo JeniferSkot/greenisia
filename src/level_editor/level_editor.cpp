@@ -16,7 +16,8 @@ enum MouseMode {
     MM_NONE,
     MM_MOVING,
     MM_BRUSH1,
-    MM_BRUSH2
+    MM_BRUSH2,
+    MM_RESIZING
 };
 
 static MouseMode mode = MM_NONE;
@@ -41,6 +42,8 @@ void LE::print_help()
     cout << "Movement keys: move camera" << endl;
     cout << endl;
     cout << "Scroll up/down: zoom in/out" << endl;
+    cout << endl;
+    cout << "Drag outside: resize" << endl;
     cout << "===============================" << endl;
     cout << endl;
 }
@@ -53,9 +56,12 @@ void LE::on_mousedown(SDL_MouseButtonEvent& ev)
         return;
     }
 
+
     switch(ev.button) {
         case SDL_BUTTON_LEFT:
             mode = MM_BRUSH1;
+            if(!in_board(ev.x, ev.y))
+                mode = MM_RESIZING;
             break;
         case SDL_BUTTON_RIGHT:
             mode = MM_BRUSH2;
@@ -68,7 +74,7 @@ void LE::on_mousedown(SDL_MouseButtonEvent& ev)
     }
     mouse = {ev.x, ev.y};
 
-    if(mode != MM_MOVING) {
+    if(mode == MM_BRUSH1 || mode == MM_BRUSH2) {
         auto keys = SDL_GetKeyboardState(nullptr);
         bool shift = keys[SDL_SCANCODE_LSHIFT]
             || keys[SDL_SCANCODE_RSHIFT];
@@ -81,6 +87,9 @@ void LE::on_mousedown(SDL_MouseButtonEvent& ev)
 
 void LE::on_mouseup(SDL_MouseButtonEvent& ev)
 {
+    if(mode == MM_RESIZING)
+        resize_map(map_edge_markers);
+
     mode = MM_NONE;
 
     if(!in_menu(ev.x, ev.y))
@@ -119,8 +128,26 @@ void LE::tick(int)
         camera.y += y_motion;
         stored.y -= y_motion;
 
-    } else if(mode != MM_NONE)
+    } else if(mode == MM_BRUSH1 || mode == MM_BRUSH2)
         paint_line(mouse, mouse2);
+
+    if(mode == MM_RESIZING) {
+        static SDL_FPoint stored {0, 0};
+        stored.x += (delta.x / zoom) / block_size.x;
+        stored.y += (delta.y / zoom) / block_size.y;
+        
+        int x_motion = stored.x;
+        map_edge_markers.x += x_motion;
+        stored.x -= x_motion;
+        
+        int y_motion = stored.y;
+        map_edge_markers.y += y_motion;
+        stored.y -= y_motion;
+    } else {
+        auto& map = current_level->map;
+        map_edge_markers.x = map.width;
+        map_edge_markers.y = map.height;
+    }
 
 
     SDL_Point input = keyboard_movement_input();    
