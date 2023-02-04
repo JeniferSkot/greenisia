@@ -14,15 +14,15 @@ for level in */; do
         
         echo ""
         echo "Trimming layers in ${area}"
-        for img in ${area}*.png; do
-            echo "Trimming $img"
-            in=itmp.png
-            out=otmp.png
-            mv "$img" "$in"
-            magick "$in" -trim "$out"
-            rm "$in"
-            mv "$out" "$img"
-        done
+        if test "$(which parallel 2> /dev/null )"; then
+            echo "Found GNU Parallel"
+            ls ${area}*.png | \
+                parallel -P $(nproc) ./trim.sh
+        else
+            for img in ${area}*.png; do
+                ./trim.sh $img
+            done
+        fi
     done
 done
 
