@@ -31,8 +31,14 @@ void LE::render_border()
 
     SDL_Rect top_border {0, -3, width, 3};
     SDL_Rect left_border {-3, 0, 3, height};
-    SDL_Rect right_border {edge.x, 0, 3, edge.y * zoom};
-    SDL_Rect bottom_border {0, edge.y, edge.x * zoom, 3};
+    SDL_Rect right_border {
+        edge.x, 0,
+        3, static_cast<int>(edge.y * zoom)
+    };
+    SDL_Rect bottom_border {
+        0, edge.y,
+        static_cast<int>(edge.x * zoom), 3
+    };
     apply_camera(top_border.x, top_border.y);
     apply_camera(left_border.x, left_border.y);
     apply_camera(right_border.x, right_border.y);
@@ -128,6 +134,6 @@ void LE::render_toolbar()
         load_texture(texture_path);
     auto texture = get_texture(texture_path);
 
-    //SDL_RenderCopy(rnd, texture, &src, &dest);
+    SDL_RenderCopy(rnd, texture, &src, &dest);
 }
 
