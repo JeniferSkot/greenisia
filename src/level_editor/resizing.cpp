@@ -14,6 +14,8 @@ SDL_Point LE::map_edge_markers {50, 50};
 bool LE::in_board(int x, int y)
 {
     undo_camera(x, y);
+    x = x / block_size.x;
+    y = y / block_size.y;
     return current_level->map.at(x, y);
 }
 
