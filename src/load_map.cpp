@@ -7,7 +7,7 @@ using std::cout;
 using std::endl;
 
 
-Map load_map(string path)
+Map load_map(fs::path path)
 {
     cout << "Loading map " << path << endl;
     std::ifstream file(path);

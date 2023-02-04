@@ -3,8 +3,10 @@
 
 #include "block.hpp"
 #include <string>
+#include <filesystem>
 
 using std::string;
+namespace fs = std::filesystem;
 
 
 struct Map
@@ -29,6 +31,6 @@ struct Map
 
 void render_map();
 
-Map load_map(string path);
+Map load_map(fs::path path);
 
 #endif // INCLUDE_MAP_HPP
