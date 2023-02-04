@@ -1,3 +1,3 @@
 #!/bin/bash
 
-$(dirname $0)/bg/tutorial/cave/prepare.sh
+$(dirname $0)/bg/prepare.sh
