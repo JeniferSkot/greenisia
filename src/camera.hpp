@@ -14,13 +14,23 @@ SDL_Point get_camera_target();
 void resize_camera();
 void adjust_zoom();
 
+
 void apply_camera(SDL_Rect&);
 void apply_camera(SDL_Point&);
 void apply_camera(int& x, int& y);
+
+void apply_camera(SDL_FRect&);
+void apply_camera(SDL_FPoint&);
+void apply_camera(float& x, float& y);
+
 
 // Translates screen to game coordinates.
 void undo_camera(SDL_Rect&);
 void undo_camera(SDL_Point&);
 void undo_camera(int& x, int& y);
+
+void undo_camera(SDL_FRect&);
+void undo_camera(SDL_FPoint&);
+void undo_camera(float& x, float& y);
 
 #endif // INCLUDE_CAMERA_HPP
