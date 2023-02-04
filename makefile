@@ -51,7 +51,6 @@ depend: ${DEP}
 include ${DEP}
 
 ${OBJ}: ${ODIR}/%.o: ${SDIR}/%.cpp makefile
-	# mkdir -p ${ODIR}
 	echo "Compiling $@"
 	mkdir -p $$(dirname $@)
 	${CXX} -c -o $@ $< ${_CXXFLAGS}
@@ -87,7 +86,6 @@ ${BDIR}/${ASSETS_DIR}/STAMP: ${ASSETS}
 	mkdir -p "${BDIR}"
 	cp -r "${ASSETS_DIR}" "${BDIR}/${ASSETS_DIR}"
 	echo "Preparing assets"
-	cd ${BDIR}/${ASSETS_DIR}
 	if [ -f "${BDIR}/${ASSETS_DIR}/prepare.sh" ]; then \
 		${BDIR}/${ASSETS_DIR}/prepare.sh; \
 	fi
