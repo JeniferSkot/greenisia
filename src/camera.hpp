@@ -3,6 +3,14 @@
 
 #include "SDL2/SDL_rect.h"
 
+/* WARNING:
+ * Camera's position does not include the current zoom.
+ *
+ * This means if you need to use both position and size,
+ * you need to transform one to match the other.
+ * The easiest option is to work with not-zoomed
+ * coordinates and divide the size by the zoom factor.
+ */
 extern SDL_Rect camera;
 extern float zoom;
 

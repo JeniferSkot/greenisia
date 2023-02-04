@@ -27,8 +27,7 @@ void load_backgrounds(Level* level)
 
     for(auto const& background : level->backgrounds)
     for(auto const& layer : background.layers) {
-        auto path = layer.second;
-        paths.push_back(path);
+        paths.push_back(layer.path);
     }
 
     load_textures(paths);

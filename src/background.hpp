@@ -5,20 +5,34 @@
 #include <vector>
 #include <utility>
 #include <SDL2/SDL_rect.h>
+#include <filesystem>
 
 using std::string;
 using std::vector;
 using std::pair;
-
-typedef pair<int, string> Layer;
+namespace fs = std::filesystem;
 
 struct Background
 {
-    SDL_Rect pos;
+    struct Layer;
+
+
+    SDL_Rect pos {0, 0, 0, 0}; // TODO filter divisions
     vector<Layer> layers;
 
-    float scale = 0.05; // per layer index
+    float scale = 0.05; // motion per layer index
 };
+
+struct Background::Layer
+{
+    string path;
+
+    SDL_Rect pos;
+    int z_index;
+};
+
+
+Background create_background(fs::path const& manifest);
 
 
 void render_background(int min, int max);

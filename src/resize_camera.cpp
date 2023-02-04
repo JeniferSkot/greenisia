@@ -37,4 +37,6 @@ void adjust_zoom()
     if(old_zoom != zoom) {
         old_zoom = zoom;
     }
+
+    // Old zoom can be used for animating zoom effect
 }

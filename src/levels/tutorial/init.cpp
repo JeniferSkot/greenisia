@@ -19,30 +19,12 @@ void tutorial::init_map()
 
 void tutorial::init_background()
 {
-    Background cave;
-    cave.pos = {
-        0, 0,
-        2300,
-        1730
+    vector<string> area_manifests {
+        "assets/bg/tutorial/cave.bgman"
     };
 
-    Layer layers[] {
-        { -3, "assets/bg/tutorial/cave/_3.png" },
-        { -2, "assets/bg/tutorial/cave/_2.png" },
-        { -1, "assets/bg/tutorial/cave/_1.png" },
-        { 0, "assets/bg/tutorial/cave/0.png" },
-        { 1, "assets/bg/tutorial/cave/1.png" },
-        { 2, "assets/bg/tutorial/cave/2.png" },
-        { 3, "assets/bg/tutorial/cave/3.png" }
-    };
-    int count = sizeof(layers) / sizeof(layers[0]);
-
-    cave.layers.insert(
-        cave.layers.end(),
-        layers,
-        layers + count
-    );
-
-
-    level.backgrounds.push_back(cave);
+    for(string manifest : area_manifests) {
+        Background bg = create_background(manifest);
+        level.backgrounds.push_back(bg);
+    }
 }
