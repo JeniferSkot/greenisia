@@ -2,21 +2,25 @@
 #include "player.hpp"
 #include "level.hpp"
 #include <cmath>
+#include <iostream>
+
+using std::cout;
+using std::endl;
 
 static SDL_Point get_player_center();
-static float get_nearest_floor();
+static float get_lowest_floor(int lrange, int rrange);
 
 
 void move_camera([[maybe_unused]]int progress)
 {
     auto target_pos = get_camera_target();
 
-    const float base_speed = 0.004;
+    const float base_speed = 0.0036;
 
     float speed = 1 - pow(1 - base_speed, progress);
-    float delay = 1 - speed;
-    camera.x = (camera.x * delay + target_pos.x * speed);
-    camera.y = (camera.y * delay + target_pos.y * speed);
+    float rest = 1 - speed;
+    camera.x = (camera.x * rest + target_pos.x * speed);
+    camera.y = (camera.y * rest + target_pos.y * speed);
 
     
     SDL_FPoint limits {
@@ -35,23 +39,38 @@ void move_camera([[maybe_unused]]int progress)
 SDL_Point get_camera_target()
 {
     SDL_Point player_center = get_player_center();
-    float nearest_floor = get_nearest_floor();
+    float player_dx = player.pos.x - player.old_pos.x;
+
+    float lowest_floor;
+    /* Find lowest floor pos.y */ {
+        int lrange = 8;
+        int rrange = 8;
+        if(player_dx > 0) { // moving right
+            lrange = - player.size.x / block_size.x;
+            rrange += 42;
+        } else if(player_dx < 0) { // moving left
+            lrange += 42;
+            rrange = - player.size.x / block_size.x;
+        }
+
+        lowest_floor = get_lowest_floor(lrange, rrange);
+    }
 
     SDL_Point target_pos {
         player_center.x,
         static_cast<int>
-            ((player_center.y + nearest_floor) / 2)
+            ((player_center.y + lowest_floor) / 2)
     };
 
-    float player_dx = player.pos.x - player.old_pos.x;
-    if(player_dx > 0) { // right
-        target_pos.x += camera.w / 2; 
-    } else if(player_dx < 0) { // left
-        target_pos.x -= camera.w / 2;
-    }
+
+    if(player_dx > 0) // right
+        target_pos.x += (camera.w / zoom) / 2; 
+    else if(player_dx < 0) // left
+        target_pos.x -= (camera.w / zoom) / 2;
+    
 
     target_pos.x = target_pos.x - camera.w / 2;
-    target_pos.y = target_pos.y - 3 * camera.h / 4;
+    target_pos.y = target_pos.y - 2 * camera.h / 3;
 
     return target_pos;
 }
@@ -69,20 +88,27 @@ SDL_Point get_player_center()
 }
 
 
-float get_nearest_floor()
+float get_lowest_floor(int lrange, int rrange)
 {
     Map& map = current_level->map;
-    auto& bs = block_size;
-    int x1 = player.pos.x / bs.x;
-    int x2 = (player.pos.x + player.size.x) / bs.x;
-    float y1 = (player.pos.y + player.size.y) / bs.y;
-    float y2 = y1 + player.size.y * 2 / bs.y;
+    auto const& bs = block_size;
+    auto const& pos = player.pos;
+    auto const& size = player.size;
 
-    for(int y = y1; y <= y2; y++)
+    int x1 = pos.x / bs.x - lrange;
+    int x2 = (pos.x + size.x) / bs.x + rrange;
+    if(x1 < 0) x1 = 0;
+    if(x2 >= map.width) x2 = map.width - 1;
+
+    float y1 = (pos.y - size.y) / bs.y;
+    float y2 = pos.y / bs.y + size.y * 3 / bs.y;
+
+    for(int y = y2; y >= y1; y--)
     for(int x = x1; x <= x2; x++) {
         Block* block = map.at(x, y);
-        if(block && *block != B_AIR)
+        if(block && *block != B_AIR) {
             return y * bs.y;
+        }
     }
 
     return y2 * bs.y;
