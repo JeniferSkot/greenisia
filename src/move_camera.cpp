@@ -1,6 +1,7 @@
 #include "camera.hpp"
 #include "player.hpp"
 #include "level.hpp"
+#include <cmath>
 
 static SDL_Point get_player_center();
 static float get_nearest_floor();
@@ -10,7 +11,9 @@ void move_camera([[maybe_unused]]int progress)
 {
     auto target_pos = get_camera_target();
 
-    float speed = 0.1;
+    const float base_speed = 0.004;
+
+    float speed = 1 - pow(1 - base_speed, progress);
     float delay = 1 - speed;
     camera.x = (camera.x * delay + target_pos.x * speed);
     camera.y = (camera.y * delay + target_pos.y * speed);
@@ -40,8 +43,15 @@ SDL_Point get_camera_target()
             ((player_center.y + nearest_floor) / 2)
     };
 
+    float player_dx = player.pos.x - player.old_pos.x;
+    if(player_dx > 0) { // right
+        target_pos.x += camera.w / 2; 
+    } else if(player_dx < 0) { // left
+        target_pos.x -= camera.w / 2;
+    }
+
     target_pos.x = target_pos.x - camera.w / 2;
-    target_pos.y = target_pos.y - 2 * camera.h / 3;
+    target_pos.y = target_pos.y - 3 * camera.h / 4;
 
     return target_pos;
 }
@@ -77,3 +87,4 @@ float get_nearest_floor()
 
     return y2 * bs.y;
 }
+
