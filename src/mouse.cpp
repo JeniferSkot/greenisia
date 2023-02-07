@@ -23,7 +23,7 @@ void mousemotion(SDL_MouseMotionEvent& ev)
     SDL_Point pos {ev.x, ev.y};
     undo_camera(pos);
 
-    spawn_coin(pos.x, pos.y);
+    spawn_coins(pos.x, pos.y, 50);
 }
 
 void mouseup(SDL_MouseButtonEvent&)

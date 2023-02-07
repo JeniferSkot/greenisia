@@ -1,10 +1,10 @@
 #ifndef INCLUDE_COIN_HPP
 #define INCLUDE_COIN_HPP
 
-#include <list>
+#include <vector>
 #include <SDL2/SDL_rect.h>
 
-using std::list;
+using std::vector;
 
 void spawn_coin(int x, int y);
 void spawn_coins(int x, int y, int count);
@@ -28,7 +28,7 @@ private:
     friend void spawn_coin(int x, int y);
 };
 
-list<Coin>& coins();
+vector<Coin>& coins();
 int collected_coins();
 
 void move_coins(int progress);

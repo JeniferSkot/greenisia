@@ -1,15 +1,14 @@
 #include "coin.hpp"
 #include "random.hpp"
 #include <iostream>
-#include <list>
 
 using std::cout;
 using std::endl;
 
 
-list<Coin>& coins()
+vector<Coin>& coins()
 {
-    static list<Coin> _coins;
+    static vector<Coin> _coins;
     return _coins;
 }
 

@@ -228,14 +228,15 @@ void collect_coins()
 {
     int last_coins = collected_coins();
 
-    auto itr = coins().begin();
-    while(itr != coins().end()) {
-        if(has_player_collision(*itr)) {
-            _collected_coins()++;
-            itr = coins().erase(itr);
-        } else {
-            itr++;
-        }
+    using std::size_t;
+
+    for(size_t i = 0; i < coins().size(); ++i) {
+        if(!has_player_collision(coins()[i]))
+            continue;
+
+        std::swap(coins()[i], coins().back());
+        coins().pop_back();
+        _collected_coins()++;
     }
 
     if(last_coins != collected_coins())
