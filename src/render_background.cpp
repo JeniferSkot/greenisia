@@ -34,7 +34,8 @@ void render_background(int min, int max)
             static_cast<float>(layer.pos.h)
         };
 
-        /* Scale layer based on z index */ {
+        /* Scale layer based on z index */
+        if(false) {
             pos.x -= pos.w * (scale - 1) / 2;
             pos.y -= pos.h * (scale - 1) / 2;
             pos.w *= scale;
