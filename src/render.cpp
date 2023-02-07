@@ -1,6 +1,7 @@
 #include "render.hpp"
 #include <SDL2/SDL.h>
 #include "player.hpp"
+#include "coin.hpp"
 #include "map.hpp"
 #include "background.hpp"
 #include "level_editor.hpp"
@@ -14,6 +15,7 @@ void render()
 
     render_background(-10, 0);
     render_player();
+    render_coins();
     render_background(1, 10);
 
     render_map();

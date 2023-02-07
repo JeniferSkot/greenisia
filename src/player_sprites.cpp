@@ -1,6 +1,6 @@
 #include "player.hpp"
 #include "textures.hpp"
-#include "SDL2/SDL_timer.h"
+//#include "SDL2/SDL_timer.h"
 
 
 static vector<string> player_sprites[PS_LAST];

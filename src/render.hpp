@@ -8,6 +8,8 @@ struct SDL_Window;
 extern SDL_Window* window;
 extern SDL_Renderer* rnd;
 
+const bool show_particle_hitboxes = false;
+
 #ifdef LEVEL_EDITOR
     #ifndef DEBUG_GRID
         #define DEBUG_GRID
