@@ -2,6 +2,7 @@
 #include <cstdint>
 #include <SDL2/SDL_keyboard.h>
 #include "player.hpp"
+#include "coin.hpp"
 #include "level_editor.hpp"
 #include "camera.hpp"
 
@@ -15,10 +16,14 @@ void tick(int progress)
 
     resize_camera();
 
+    progress_coin_animation(progress);
+
     if(LE::active) {
         LE::tick(progress);
     } else {
+        move_coins(progress);
         move_player(progress);
+        collect_coins();
 
         if(camera.w > 0 && camera.h > 0)
             adjust_zoom();
