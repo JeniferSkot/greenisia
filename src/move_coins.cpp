@@ -255,7 +255,7 @@ void coin_player_collision(Coin& coin)
 static bool has_player_collision(Coin const& coin)
 {
     auto const& pos = coin.pos;
-    const int range = block_size.x;
+    const int range = block_size.x * 2;
     if(pos.x < player.pos.x + player.size.x)
     if(pos.x + pos.w > player.pos.x)
     if(pos.y < player.pos.y + player.size.y + range)
