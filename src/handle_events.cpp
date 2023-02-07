@@ -25,16 +25,24 @@ void handle_events()
         case SDL_MOUSEBUTTONDOWN:
             if(LE::active)
                 LE::on_mousedown(ev.button);
+            else
+                mousedown(ev.button);
             break;
 
         case SDL_MOUSEBUTTONUP:
             if(LE::active)
                 LE::on_mouseup(ev.button);
+            else
+                mouseup(ev.button);
             break;
 
         case SDL_MOUSEWHEEL:
             if(LE::active)
                 LE::on_mousewheel(ev.wheel);
+            break;
+
+        case SDL_MOUSEMOTION:
+            mousemotion(ev.motion);
             break;
 
 

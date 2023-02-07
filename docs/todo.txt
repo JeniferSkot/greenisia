@@ -1,6 +1,5 @@
 2022-12-08 items
 2022-12-08 inventory
-2022-12-08 coins
 2022-12-08 stairs
 2022-12-08 ropes?
 2022-12-08 sprite system
@@ -10,7 +9,8 @@
 2023-01-07 level editor (level selection)
 2023-01-07 generating and printing text timer:0h-5m-0s
 2023-02-05 rpg text system
-2023-02-05 player walking and idling
+2023-02-05 player walking and idling [toggle - shift]
+2023-02-07 common collision algorithms
 x 2022-12-08 2022-12-08 render timer:0h-7m-32s
 x 2022-12-08 2022-12-08 tick timer:0h-5m-40s
 x 2022-12-08 2022-12-08 player timer:0h-10m-14s
@@ -28,3 +28,4 @@ x 2023-01-07 2023-01-07 level editor(brushes)
 x 2023-01-07 2023-01-07 walking uphill timer:0h-54m-32s
 x 2023-01-08 2023-01-07 level editor (lines) timer:1h-10m-1s
 x 2023-01-08 2022-12-08 level editor (save/load) timer:0h-25m-16s
+x 2023-02-07 2022-12-08 coins timer:2h-40m-3s

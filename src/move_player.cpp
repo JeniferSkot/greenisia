@@ -104,7 +104,7 @@ void player_horizontal_collision()
                     }
                 }
                 if(can_go_up)
-                    player.velocity -= player.mass / 10;
+                    player.velocity -= player.mass / 8;
             }
 
             if(pos.x + size.x > x * bsize.x - 1) {
@@ -134,7 +134,7 @@ void player_horizontal_collision()
                     }
                 }
                 if(can_go_up)
-                    player.velocity -= player.mass / 10;
+                    player.velocity -= player.mass / 8;
             }
 
             if(pos.x < (x + 1) * bsize.x) {
