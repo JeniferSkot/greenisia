@@ -1,6 +1,7 @@
 #include "camera.hpp"
 #include "player.hpp"
 #include "level.hpp"
+#include "keyboard.hpp"
 #include <cmath>
 #include <iostream>
 
@@ -39,7 +40,7 @@ void move_camera([[maybe_unused]]int progress)
 SDL_Point get_camera_target()
 {
     SDL_Point player_center = get_player_center();
-    float player_dx = player.pos.x - player.old_pos.x;
+    float player_dx = keyboard_movement_input().x;
 
     float lowest_floor;
     /* Find lowest floor pos.y */ {
@@ -67,7 +68,7 @@ SDL_Point get_camera_target()
         target_pos.x += (camera.w / zoom) / 2; 
     else if(player_dx < 0) // left
         target_pos.x -= (camera.w / zoom) / 2;
-    
+
 
     target_pos.x = target_pos.x - camera.w / 2;
     target_pos.y = target_pos.y - 2 * camera.h / 3;
