@@ -17,6 +17,7 @@ void render()
     render_player();
     render_coins();
     render_background(1, 10);
+    render_coin_twinkles();
 
     render_map();
 

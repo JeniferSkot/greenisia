@@ -20,7 +20,7 @@ struct Coin
     SDL_FPoint velocity {200, 100}; // * [-1, 1)
     float mass = 500;
 
-    int age = 2048; // * [0, 1)
+    unsigned int age = 65535; // * [0, 1)
     float frame_time = 150; // * [0.9;1.1)
 
 private:
@@ -36,6 +36,7 @@ void progress_coin_animation(int progress);
 void collect_coins();
 
 void render_coins();
+void render_coin_twinkles(); // hints for coins hidden in background
 
 void load_coin_sprites();
 

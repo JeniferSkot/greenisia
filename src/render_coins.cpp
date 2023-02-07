@@ -62,3 +62,32 @@ void render_coins()
     }
 }
 
+
+void render_coin_twinkles()
+{
+    const int duration = 1;
+    const float interval_multiplier = 32.72;
+
+    for(Coin const& coin : coins()) {
+        int interval = static_cast<int>
+            (coin.frame_time * interval_multiplier);
+        int time = coin.age % interval;
+        if(time > duration * coin.frame_time)
+            continue;
+
+        int dx = (time * 7) % 2;
+        int dy = (time * 3) % 2;
+
+        auto const& pos = coin.pos;
+        SDL_Rect area {
+            static_cast<int>(pos.x + pos.w / 3) + dx,
+            static_cast<int>(pos.y + pos.h / 3) + dy,
+            3, 3
+        };
+        apply_camera(area);
+
+        SDL_SetRenderDrawColor(rnd, 255, 255, 0, 255);
+        SDL_RenderDrawRect(rnd, &area);
+    }
+}
+
