@@ -1,0 +1,7 @@
+Item name
+Sprite path
+<width>x<height>
+
+
+
+# Item list is necessary for item indexing.

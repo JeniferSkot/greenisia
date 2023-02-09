@@ -1,0 +1,3 @@
+Character Name
+Sprite path
+

@@ -1,0 +1,6 @@
+> character filename (without .crt)
+
+Text text text
+text text text
+
+# For multiple phrazes repeat character name
