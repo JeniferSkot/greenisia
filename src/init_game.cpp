@@ -2,6 +2,7 @@
 #include "render.hpp"
 #include "player.hpp"
 #include "coin.hpp"
+#include "item.hpp"
 #include "map.hpp"
 #include "camera.hpp"
 #include "level.hpp"
@@ -31,6 +32,7 @@ void init_game()
     init_player_sprites();
     load_player_sprites();
     load_coin_sprites();
+    load_items();
 
     cout << "Game loaded!" << endl;
 
