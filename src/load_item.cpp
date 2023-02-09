@@ -1,7 +1,8 @@
 #include "item.hpp"
+#include "textures.hpp"
+#include "trim.hpp"
 #include <vector>
 #include <fstream>
-#include "trim.hpp"
 #include <iostream>
 
 using std::vector;
@@ -9,6 +10,7 @@ using std::cout;
 using std::endl;
 
 static void load_item(fs::path);
+static void load_item_sprites();
 
 
 void load_items()
@@ -29,6 +31,21 @@ void load_items()
 
         load_item(itr->path());
     }
+
+    load_item_sprites();
+}
+
+void load_item_sprites()
+{
+    vector<string> sprites;
+    for(auto const& pair : items())
+        sprites.push_back(pair.second.sprite);
+
+    Item& def_item = item("");
+    if(!def_item.sprite.empty())
+        sprites.push_back(def_item.sprite);
+
+    load_textures(sprites);
 }
 
 
@@ -58,6 +75,17 @@ void load_item(fs::path path)
         trim(input[1]),
         parse_size(trim(input[2]))
     };
+
+
+    if(!item.sprite.empty() && !fs::exists(item.sprite))
+        item.sprite = "assets/items" / item.sprite;
+
+    if(!fs::exists(item.sprite)) {
+        cout << "Can not find sprite " << input[0];
+        cout << " or " << item.sprite << endl;
+        item.sprite = "";
+    }
+
 
     items().emplace(path, item);
 }
