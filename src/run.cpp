@@ -45,3 +45,8 @@ int ems_game_loop(double time, void*)
     return running ? EM_TRUE : EM_FALSE;
 }
 #endif
+
+void stop_game()
+{
+    running = false;
+}

@@ -8,6 +8,7 @@ void init_game();
 
 extern bool running;
 void run();
+void stop_game();
 
 void handle_events();
 void tick(int time_ms);
