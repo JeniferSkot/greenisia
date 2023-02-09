@@ -3,6 +3,7 @@
 #include "player.hpp"
 #include "coin.hpp"
 #include "item.hpp"
+#include "story.hpp"
 #include "map.hpp"
 #include "camera.hpp"
 #include "level.hpp"
@@ -33,6 +34,8 @@ void init_game()
     load_player_sprites();
     load_coin_sprites();
     load_items();
+    load_characters();
+    //load_stories();
 
     cout << "Game loaded!" << endl;
 
