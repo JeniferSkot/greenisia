@@ -35,7 +35,7 @@ void init_game()
     load_coin_sprites();
     load_items();
     load_characters();
-    //load_stories();
+    load_stories();
 
     cout << "Game loaded!" << endl;
 
