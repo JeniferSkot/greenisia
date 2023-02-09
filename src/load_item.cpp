@@ -23,6 +23,8 @@ void load_items()
         return;
     }
 
+    cout << "Loading items" << endl;
+
     fs::directory_iterator end;
     fs::directory_iterator begin(dir);
     for(auto itr = begin; itr != end; itr++) {

@@ -21,7 +21,7 @@ void init_levels()
 
 void load_backgrounds(Level* level)
 {
-    cout << "Loading level backgrounds." << endl;
+    cout << "Loading level backgrounds" << endl;
 
     vector<string> paths;
 

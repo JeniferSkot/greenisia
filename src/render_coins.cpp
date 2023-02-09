@@ -3,6 +3,11 @@
 #include "coin.hpp"
 #include "textures.hpp"
 #include <SDL2/SDL.h>
+#include <iostream>
+
+using std::cout;
+using std::endl;
+
 
 void progress_coin_animation(int ms)
 {
@@ -17,6 +22,7 @@ static const string path = "assets/items/coin.png";
 
 void load_coin_sprites()
 {
+    cout << "Loading coins" << endl;
     load_texture(path);
 }
 
