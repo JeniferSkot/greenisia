@@ -10,6 +10,7 @@ using std::cout;
 using std::endl;
 
 static void load_item(fs::path);
+static SDL_Point parse_size(string);
 static void load_item_sprites();
 
 
@@ -37,21 +38,6 @@ void load_items()
     load_item_sprites();
 }
 
-void load_item_sprites()
-{
-    vector<string> sprites;
-    for(auto const& pair : items())
-        sprites.push_back(pair.second.sprite);
-
-    Item& def_item = item("");
-    if(!def_item.sprite.empty())
-        sprites.push_back(def_item.sprite);
-
-    load_textures(sprites);
-}
-
-
-static SDL_Point parse_size(string);
 
 void load_item(fs::path path)
 {
@@ -109,5 +95,19 @@ SDL_Point parse_size(string input)
     };
 
     return size;
+}
+
+
+void load_item_sprites()
+{
+    vector<string> sprites;
+    for(auto const& pair : items())
+        sprites.push_back(pair.second.sprite);
+
+    Item& def_item = item("");
+    if(!def_item.sprite.empty())
+        sprites.push_back(def_item.sprite);
+
+    load_textures(sprites);
 }
 
