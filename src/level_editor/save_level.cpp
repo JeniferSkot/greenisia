@@ -15,6 +15,8 @@ void LE::save_level()
 }
 
 
+const int MAP_DATA_VERSION = 1;
+
 void LE::save_map()
 {
     auto& map = current_level->map;
