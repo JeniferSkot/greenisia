@@ -237,6 +237,7 @@ void collect_coins()
         std::swap(coins()[i], coins().back());
         coins().pop_back();
         _collected_coins()++;
+        i--;
     }
 
     if(last_coins != collected_coins())
@@ -244,22 +245,13 @@ void collect_coins()
 }
 
 
-void coin_player_collision(Coin& coin)
-{
-    if(!has_player_collision(coin))
-        return;
-
-    _collected_coins()++;
-    cout << "Coins: " << _collected_coins() << endl;
-}
-
 static bool has_player_collision(Coin const& coin)
 {
     auto const& pos = coin.pos;
     const int range = block_size.x;
     if(pos.x < player.pos.x + player.size.x + range)
     if(pos.x + pos.w > player.pos.x - range)
-    if(pos.y < player.pos.y + player.size.y + range)
+    if(pos.y < player.pos.y + player.size.y + range*3)
     if(pos.y + pos.h > player.pos.y - range)
         return true;
     return false;
