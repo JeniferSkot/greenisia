@@ -19,6 +19,7 @@ struct Item
 
 
 std::map<fs::path, Item>& items();
+Item& item(fs::path);
 
 void load_items();
 
