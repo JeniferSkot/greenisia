@@ -27,26 +27,6 @@ static SDL_Point mouse {0, 0};
 static SDL_Point last_mouseup {0, 0};
 
 
-void LE::print_help()
-{
-    cout << endl;
-    cout << "====== Level Editor help ======" << endl;
-    cout << "Press L to disable level editor" << endl;
-    cout << endl;
-    cout << "Menu Left Click: action" << endl;
-    cout << endl;
-    cout << "Left click/drag: place block1" << endl;
-    cout << "Right click/drag: place block2" << endl;
-    cout << endl;
-    cout << "Middle click+drag: move camera" << endl;
-    cout << "Movement keys: move camera" << endl;
-    cout << endl;
-    cout << "Scroll up/down: zoom in/out" << endl;
-    cout << endl;
-    cout << "Drag outside: resize" << endl;
-    cout << "===============================" << endl;
-    cout << endl;
-}
 
 void LE::on_mousedown(SDL_MouseButtonEvent& ev)
 {
