@@ -3,7 +3,7 @@
 #include "camera.hpp"
 #include "textures.hpp"
 #include "keyboard.hpp"
-#include "level_editor.hpp"
+#include "level_editor/global.hpp"
 #include <SDL2/SDL.h>
 
 namespace LE = level_editor;

@@ -7,7 +7,6 @@
 #include "map.hpp"
 #include "camera.hpp"
 #include "level.hpp"
-#include "level_editor.hpp"
 #include <iostream>
 
 using std::cout;
@@ -20,10 +19,6 @@ float zoom = 1.0f;
 
 #ifdef DEBUG_GRID
 bool show_debug_grid = true;
-#endif
-
-#ifdef LEVEL_EDITOR
-bool level_editor::active = false;
 #endif
 
 

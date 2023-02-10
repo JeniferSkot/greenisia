@@ -1,6 +1,6 @@
 #include "global.hpp"
 #include "render.hpp"
-#include "level_editor.hpp"
+#include "level_editor/global.hpp"
 #include <SDL2/SDL.h>
 #include <iostream>
 
@@ -78,11 +78,6 @@ void on_keydown(SDL_KeyboardEvent& ev)
     if(scancode == SDL_SCANCODE_L) {
         LE::active = !LE::active;
         if(LE::active) {
-            static bool first_time = true;
-            if(first_time)
-                LE::print_help();
-            first_time = false;
-
             cout << "Level Editor: on" << endl;
             LE::init();
 

@@ -4,7 +4,7 @@
 #include "coin.hpp"
 #include "map.hpp"
 #include "background.hpp"
-#include "level_editor.hpp"
+#include "level_editor/global.hpp"
 
 namespace LE = level_editor;
 

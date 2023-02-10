@@ -10,19 +10,7 @@ struct SDL_MouseWheelEvent;
 
 namespace level_editor
 {
-#ifdef LEVEL_EDITOR
-    extern bool active;
-#else
-    const bool active = false;
-#endif
-
     extern Block brushes[2];
-
-    const auto BRUSH_MENU_TEXTURE
-        = "assets/menu/brushes_menu.png";
-
-    const auto TOOLBAR_TEXTURE
-        = "assets/menu/level_edit_menu.png";
 
     void print_help();
 

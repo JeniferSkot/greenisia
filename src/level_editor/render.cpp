@@ -1,4 +1,5 @@
 #include "level_editor.hpp"
+#include "level_editor/config.hpp"
 #include "level.hpp"
 #include "render.hpp"
 #include "camera.hpp"

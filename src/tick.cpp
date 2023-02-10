@@ -3,7 +3,7 @@
 #include <SDL2/SDL_keyboard.h>
 #include "player.hpp"
 #include "coin.hpp"
-#include "level_editor.hpp"
+#include "level_editor/global.hpp"
 #include "camera.hpp"
 
 namespace LE = level_editor;
