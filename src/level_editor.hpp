@@ -26,6 +26,17 @@ namespace level_editor
 
     void print_help();
 
+    void init();
+    void deinit();
+
+
+    extern bool restored_initial_level_state;
+    // Saves current state and resets level
+    void restore_inital_level_state();
+    // Restores saved level state
+    void restore_current_level_state();
+
+
     void on_mousedown(SDL_MouseButtonEvent&);
     void on_mouseup(SDL_MouseButtonEvent&);
     void on_mousewheel(SDL_MouseWheelEvent&);
@@ -52,7 +63,6 @@ namespace level_editor
     void click_toolbar(int x, int y);
 
     void save_level();
-    void save_map();
 
     /* RESIZING */
     extern SDL_Point map_edge_markers;
@@ -62,6 +72,7 @@ namespace level_editor
     const int resize_delta_limit = 32;
     void resize_map(SDL_Point size);
 
+    void restore_scene();
 }
 
 #endif // INCLUDE_LEVEL_EDITOR_HPP

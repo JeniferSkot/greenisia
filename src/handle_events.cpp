@@ -84,12 +84,15 @@ void on_keydown(SDL_KeyboardEvent& ev)
             first_time = false;
 
             cout << "Level Editor: on" << endl;
+            LE::init();
+
             if(!show_debug_grid) {
                 show_debug_grid = true;
                 cout << "Debug Grid: on" << endl;
             }
         } else {
             cout << "Level Editor: off" << endl;
+            LE::deinit();
         }
     }
 #endif
