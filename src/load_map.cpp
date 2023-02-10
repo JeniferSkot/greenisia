@@ -26,7 +26,6 @@ Map load_map(fs::path path)
     switch(version) {
         case 1:
             return load_map1(file);
-            break;
 
         default:
             cout << "Invalid map data version!" << endl;

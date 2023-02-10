@@ -1,0 +1,9 @@
+The file begins with two 32bit unsiged ints storing
+ respectively the map width and height. They are 
+ referred to as w and h in the sources.
+
+The rest of the file contains (w*h) bytes of data,
+ each representing a value of the enum type Block.
+They are directly stored in the map object's data,
+ which is ordered line by line.
+
