@@ -1,0 +1,6 @@
+All lvl files start with 32bit unsigned integer
+ containing the map format version.
+
+Files v<i>.txt where i is the format version contain
+ description of the contents after the version.
+

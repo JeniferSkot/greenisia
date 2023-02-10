@@ -1,0 +1,11 @@
+The first 2 values are the player coordinates (u32 each).
+
+The next value (u32) contains the number N of items on
+ the level, followed by N item entries.
+
+An item entry consistes of item name (string),
+ item position (pair of u32) and story name (string)
+If te string is empty, the item does not start a story.
+
+
+
