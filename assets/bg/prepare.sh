@@ -7,10 +7,10 @@ for level in */; do
         output=${level}$(basename $area).bgman
         
         echo "Generating $output:"
-        magick ${area}*.png \
-            -format "$area%f %@\n" \
-            info:- | \
-                ./gen_bg_manifest.py | tee $output
+        for img in ${area}*.png; do
+            magick ${img} -format "$area%f %@\n" \
+                info:- ;
+        done | ./gen_bg_manifest.py | tee $output
         
         echo ""
         echo "Trimming layers in ${area}"
