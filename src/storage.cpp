@@ -1,5 +1,7 @@
 #include "storage.hpp"
+#include <string>
 
+using std::string;
 
 
 void write8(std::ofstream& file, uint8_t data)
@@ -41,4 +43,21 @@ uint32_t read32(std::ifstream& file)
     }
 
     return data;
+}
+
+
+void write(std::ofstream& file, string data)
+{
+    write32(file, data.size());
+    file << data;
+}
+
+string read(std::ifstream& file)
+{
+    size_t size = read32(file);
+
+    string input(size, '?');
+    file.read(&input[0], size);
+
+    return input;
 }

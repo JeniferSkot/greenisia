@@ -1,0 +1,10 @@
+Describes storing methods in storage.hpp
+
+
+u8 (unsigned 8bit integers) are stored as raw bytes.
+
+u32 (aka unsigned 32bit integers) are stored with
+ their most significant byte first.
+
+Strings are stored by first storing their length in
+ single u32 value, followed by their contents.

@@ -3,16 +3,16 @@
 
 #include <cstdint>
 #include <fstream>
-
-using std::ifstream;
-using std::ofstream;
+#include <string>
 
 
-void write8(ofstream& file, uint8_t);
-void write32(ofstream& file, uint32_t);
+void write8(std::ofstream& file, uint8_t);
+void write32(std::ofstream& file, uint32_t);
+void write(std::ofstream& file, std::string);
 
-uint8_t read8(ifstream& file);
-uint32_t read32(ifstream& file);
+uint8_t read8(std::ifstream& file);
+uint32_t read32(std::ifstream& file);
+std::string read(std::ifstream& file);
 
 
 #endif // INCLUDE_STORAGE_HPP
