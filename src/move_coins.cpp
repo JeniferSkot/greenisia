@@ -8,8 +8,9 @@
 using std::cout;
 using std::endl;
 
-
+static const bool print_coins = false;
 static void move_coin(int ms, Coin&);
+
 
 void move_coins(int ms)
 {
@@ -240,7 +241,7 @@ void collect_coins()
         i--;
     }
 
-    if(last_coins != collected_coins())
+    if(print_coins && last_coins != collected_coins())
         cout << "Coins: " << collected_coins() << endl;
 }
 
