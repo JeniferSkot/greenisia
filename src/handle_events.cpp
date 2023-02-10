@@ -18,7 +18,7 @@ void handle_events()
         switch(ev.type) {
 
         case SDL_QUIT:
-            running = false;
+            stop_game();
             break;
 
 
@@ -61,7 +61,7 @@ void on_keydown(SDL_KeyboardEvent& ev)
 
 #ifdef QUICK_QUIT
     if(scancode == SDL_SCANCODE_Q)
-        running = false;
+        stop_game();
 #endif
 
 #ifdef DEBUG_GRID

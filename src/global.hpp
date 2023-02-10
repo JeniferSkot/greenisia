@@ -6,7 +6,6 @@
 int init();
 void init_game();
 
-extern bool running;
 void run();
 void stop_game();
 
