@@ -10,6 +10,7 @@ namespace tutorial
     void init();
     void init_map();
     void init_background();
+    void init_entities();
 
     void load();
 }

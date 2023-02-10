@@ -11,10 +11,13 @@
  */
 void tutorial::load()
 {
+    // level.entity_data.player_pos.x = 16 * 4 * 2;
+    // level.entity_data.player_pos.y = 16 * 4 * 17 - player.size.y;
+
     current_level = &level;
 
-    player.pos.x = 16 * 4 * 2;
-    player.pos.y = 16 * 4 * 17 - player.size.y;
+    player.pos.x = level.entity_data.player_pos.x;
+    player.pos.y = level.entity_data.player_pos.y;
 
     resize_camera();
     auto cam_pos = get_camera_target();

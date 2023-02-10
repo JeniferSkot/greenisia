@@ -9,6 +9,7 @@ void tutorial::init()
 {
     init_map();
     init_background();
+    init_entities();
 }
 
 void tutorial::init_map()
@@ -27,4 +28,13 @@ void tutorial::init_background()
         Background bg = create_background(manifest);
         level.backgrounds.push_back(bg);
     }
+}
+
+void tutorial::init_entities()
+{
+    level.entity_data_file =
+        "assets/level_data/tutorial.lvl";
+
+    level.entity_data =
+        load_entity_data(level.entity_data_file);
 }
