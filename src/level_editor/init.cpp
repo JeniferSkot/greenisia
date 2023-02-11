@@ -1,5 +1,6 @@
-#include "level_editor/global.hpp"
-#include "level_editor.hpp"
+#include "global.hpp"
+#include "utils.hpp"
+#include "state.hpp"
 
 namespace LE = level_editor;
 

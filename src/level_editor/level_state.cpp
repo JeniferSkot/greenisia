@@ -1,4 +1,4 @@
-#include "level_editor.hpp"
+#include "state.hpp"
 
 namespace LE = level_editor;
 
@@ -7,7 +7,7 @@ bool LE::restored_initial_level_state = false;
 
 
 // Saves current state and resets level
-void LE::restore_inital_level_state()
+void LE::restore_initial_level_state()
 {
     restored_initial_level_state = true;
     // TODO implement

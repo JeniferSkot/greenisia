@@ -1,8 +1,9 @@
-#include "level_editor.hpp"
-#include "level.hpp"
-#include "storage.hpp"
-#include <iostream>
+#include "map.hpp"
+#include "state.hpp"
+#include "../level.hpp"
+#include "../storage.hpp"
 #include <fstream>
+#include <iostream>
 
 namespace LE = level_editor;
 using std::cout;
@@ -55,3 +56,4 @@ void save_entity_state()
 
     cout << "Entity state save not implemented" << endl;
 }
+

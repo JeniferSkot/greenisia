@@ -1,6 +1,7 @@
-#include "camera.hpp"
-#include "level_editor.hpp"
-#include "level.hpp"
+#include "map.hpp"
+#include "config.hpp"
+#include "render.hpp"
+#include "../level.hpp"
 #include <iostream>
 
 using std::cout;
@@ -11,13 +12,6 @@ namespace LE = level_editor;
 
 SDL_Point LE::map_edge_markers {50, 50};
 
-bool LE::in_board(int x, int y)
-{
-    undo_camera(x, y);
-    x = x / block_size.x;
-    y = y / block_size.y;
-    return current_level->map.at(x, y);
-}
 
 void LE::resize_map(SDL_Point size)
 {
