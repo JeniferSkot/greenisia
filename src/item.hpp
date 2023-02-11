@@ -23,4 +23,8 @@ Item& item(fs::path);
 
 void load_items();
 
+void render_items();
+void render_item_names();
+void render_item_hitboxes();
+
 #endif // INCLUDE_ITEM_HPP
