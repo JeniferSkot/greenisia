@@ -40,18 +40,19 @@ void render_player()
         SDL_RenderCopy(rnd, texture,
                        nullptr, &sprite_area);
     }
-    
-
-    if(show_debug_grid) { // Player hitbox
-        SDL_Rect player_area {
-            static_cast<int>(player.pos.x),
-            static_cast<int>(player.pos.y),
-            player.size.x,
-            player.size.y
-        };
-        apply_camera(player_area);
-
-        SDL_SetRenderDrawColor(rnd, 0, 255, 0, 255);
-        SDL_RenderDrawRect(rnd, &player_area);
-    }
 }
+
+void render_player_hitbox()
+{
+    SDL_Rect player_area {
+        static_cast<int>(player.pos.x),
+        static_cast<int>(player.pos.y),
+        player.size.x,
+        player.size.y
+    };
+    apply_camera(player_area);
+
+    SDL_SetRenderDrawColor(rnd, 0, 255, 0, 255);
+    SDL_RenderDrawRect(rnd, &player_area);
+}
+

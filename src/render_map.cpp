@@ -32,7 +32,6 @@ void render_map()
 
         SDL_SetRenderDrawColor(rnd, c.r, c.g, c.b, c.a);
 
-        if(show_debug_grid)
-            SDL_RenderDrawRect(rnd, &block_area);
+        SDL_RenderDrawRect(rnd, &block_area);
     }
 }

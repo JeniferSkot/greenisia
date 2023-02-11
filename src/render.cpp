@@ -19,7 +19,10 @@ void render()
     render_background(1, 10);
     render_coin_twinkles();
 
-    render_map();
+    if(show_debug_grid) {
+        render_player_hitbox();
+        render_map();
+    }
 
     if(LE::active)
         LE::render();

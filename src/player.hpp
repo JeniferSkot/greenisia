@@ -40,6 +40,7 @@ bool is_player_on_ground();
 
 
 void render_player();
+void render_player_hitbox();
 
 void init_player_sprites();
 void load_player_sprites();
