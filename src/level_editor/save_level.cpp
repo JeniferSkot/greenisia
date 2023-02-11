@@ -2,6 +2,7 @@
 #include "state.hpp"
 #include "../level.hpp"
 #include "../storage.hpp"
+#include "../player.hpp"
 #include <fstream>
 #include <iostream>
 
@@ -50,10 +51,48 @@ void save_map()
     file.close();
 }
 
+
 void save_entity_state()
 {
     const int LVL_DATA_VERSION = 1;
 
-    cout << "Entity state save not implemented" << endl;
+    auto& level = *current_level;
+    auto path = level.entity_data_file;
+
+    cout << "Saving to " << path << endl;
+
+    std::ofstream file(path);
+    if(!file) {
+        cout << "Failed opening " << path << endl;
+        return;
+    }
+
+    write32(file, LVL_DATA_VERSION);
+
+
+    SDL_Point player_pos {
+        static_cast<int>(player.pos.x),
+        static_cast<int>(player.pos.y)
+    };
+    write32(file, player_pos.x);
+    write32(file, player_pos.y);
+
+
+    auto const& items = level.entity_data.items;
+
+    write32(file, items.size());
+
+    for(auto const& item : items) {
+        write(file, item.item);
+        write32(file, item.pos.x);
+        write32(file, item.pos.y);
+        write(file, item.story_cue);
+    }
+
+
+    if(file.fail())
+        cout << "Error while saving " << path << endl;
+
+    file.close();
 }
 
