@@ -1,5 +1,5 @@
 #include "events.hpp"
-#include "../block.hpp"
+#include "state.hpp"
 
 namespace LE = level_editor;
 
@@ -12,7 +12,10 @@ void LE::click_toolbar(int x, int)
         break;
 
     case 1: // Move
-        //restore_scene();
+        if(restored_initial_level_state)
+            restore_current_level_state();
+        else
+            restore_initial_level_state();
         break;
 
     default:

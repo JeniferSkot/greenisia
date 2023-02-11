@@ -19,6 +19,8 @@ struct ItemState
     SDL_Point pos;
 
     fs::path story_cue;
+
+    bool collected = false;
 };
 
 struct EntityData

@@ -11,9 +11,6 @@
  */
 void tutorial::load()
 {
-    // level.entity_data.player_pos.x = 16 * 4 * 2;
-    // level.entity_data.player_pos.y = 16 * 4 * 17 - player.size.y;
-
     current_level = &level;
 
     player.pos.x = level.entity_data.player_pos.x;
