@@ -9,6 +9,7 @@
 #include "../camera.hpp"
 #include "../level.hpp"
 #include "../keyboard.hpp"
+#include "../player.hpp"
 #include <SDL2/SDL_mouse.h>
 #include <SDL2/SDL_keyboard.h>
 
@@ -17,7 +18,7 @@ namespace LE = level_editor;
 SDL_Point LE::last_screen_mouse {0, 0};
 
 
-void LE::tick_dragging(int)
+void LE::tick_moving(int)
 {
     SDL_Point screen_mouse;
     SDL_GetMouseState(&screen_mouse.x,
@@ -77,6 +78,50 @@ void LE::tick_resizing(int)
     stored.y -= y_motion;
 }
 
+void LE::tick_dragging_player(int)
+{
+    SDL_FPoint delta {
+        mouse.x - last_mouse.x,
+        mouse.y - last_mouse.y
+    };
+
+    static SDL_FPoint stored {0, 0};
+    stored.x += delta.x * block_size.x;
+    stored.y += delta.y * block_size.y;
+    
+    int x_motion = stored.x;
+    player.pos.x += x_motion;
+    stored.x -= x_motion;
+    
+    int y_motion = stored.y;
+    player.pos.y += y_motion;
+    stored.y -= y_motion;
+}
+
+void LE::tick_dragging_item(int)
+{
+    Level& level = *current_level;
+    auto& items = level.entity_data.items;
+    auto& pos = items[dragged_id].pos;
+
+    SDL_FPoint delta {
+        mouse.x - last_mouse.x,
+        mouse.y - last_mouse.y
+    };
+
+    static SDL_FPoint stored {0, 0};
+    stored.x += delta.x * block_size.x;
+    stored.y += delta.y * block_size.y;
+    
+    int x_motion = stored.x;
+    pos.x += x_motion;
+    stored.x -= x_motion;
+    
+    int y_motion = stored.y;
+    pos.y += y_motion;
+    stored.y -= y_motion;
+}
+
 void LE::tick_idle(int)
 { }
 
@@ -115,7 +160,7 @@ void LE::tick(int ms)
     switch(mmode)
     {
         case MM_MOVING:
-            tick_dragging(ms);
+            tick_moving(ms);
             break;
 
         case MM_BRUSH1:
@@ -127,6 +172,13 @@ void LE::tick(int ms)
 
         case MM_RESIZING:
             tick_resizing(ms);
+            break;
+
+        case MM_DRAGGING_PLAYER:
+            tick_dragging_player(ms);
+            break;
+        case MM_DRAGGING_ITEM:
+            tick_dragging_item(ms);
             break;
 
         default:

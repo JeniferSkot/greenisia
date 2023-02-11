@@ -6,9 +6,11 @@
 namespace level_editor
 {
     /* Mouse state dependent */
-    void tick_dragging(int);
+    void tick_moving(int);
     void tick_painting(int, int brush);
     void tick_resizing(int);
+    void tick_dragging_player(int);
+    void tick_dragging_item(int);
     void tick_idle(int);
 
     /* Miscellaneous */

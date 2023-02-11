@@ -10,10 +10,13 @@ namespace level_editor
         MM_MOVING,
         MM_BRUSH1,
         MM_BRUSH2,
-        MM_RESIZING
+        MM_RESIZING,
+        MM_DRAGGING_PLAYER,
+        MM_DRAGGING_ITEM,
     };
 
     extern MouseMode mmode;
+    extern int dragged_id;
 
     // In map coordinates
     extern SDL_FPoint mouse;
