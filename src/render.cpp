@@ -29,6 +29,7 @@ void render()
     }
 
     render_item_names();
+    render_story();
 
     if(LE::active)
         LE::render();

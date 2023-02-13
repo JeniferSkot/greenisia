@@ -1,6 +1,7 @@
 #include "global.hpp"
 #include "render.hpp"
 #include "level_editor/global.hpp"
+#include "story.hpp"
 #include <SDL2/SDL.h>
 #include <iostream>
 
@@ -60,8 +61,10 @@ void on_keydown(SDL_KeyboardEvent& ev)
     const auto scancode = ev.keysym.scancode;
 
 #ifdef QUICK_QUIT
-    if(scancode == SDL_SCANCODE_Q)
+    if(scancode == SDL_SCANCODE_Q) {
         stop_game();
+        return;
+    }
 #endif
 
 #ifdef DEBUG_GRID
@@ -71,6 +74,7 @@ void on_keydown(SDL_KeyboardEvent& ev)
             cout << "Debug Grid: on" << endl;
         else
             cout << "Debug Grid: off" << endl;
+        return;
     }
 #endif
 
@@ -90,6 +94,10 @@ void on_keydown(SDL_KeyboardEvent& ev)
             cout << "Level Editor: off" << endl;
             LE::deinit();
         }
+        return;
     }
 #endif
+
+    if(in_story())
+        progress_story();
 }

@@ -1,6 +1,7 @@
 #include "item.hpp"
 #include "level.hpp"
 #include "player.hpp"
+#include "story.hpp"
 
 
 static bool has_player_collision(SDL_Rect const&);
@@ -25,6 +26,9 @@ void collect_items()
             continue;
 
         state.collected = true;
+        auto const& cue = state.story_cue;
+        if(!cue.empty())
+            start_story(cue);
     }
 
 }

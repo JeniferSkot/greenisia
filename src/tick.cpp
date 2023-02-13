@@ -4,6 +4,7 @@
 #include "player.hpp"
 #include "coin.hpp"
 #include "item.hpp"
+#include "story.hpp"
 #include "level_editor/global.hpp"
 #include "camera.hpp"
 
@@ -22,10 +23,14 @@ void tick(int progress)
     if(LE::active) {
         LE::tick(progress);
     } else {
-        move_coins(progress);
-        move_player(progress);
-        collect_coins();
-        collect_items();
+        if(in_story()) {
+            tick_story();
+        } else {
+            move_coins(progress);
+            move_player(progress);
+            collect_coins();
+            collect_items();
+        }
 
         if(camera.w > 0 && camera.h > 0)
             adjust_zoom();

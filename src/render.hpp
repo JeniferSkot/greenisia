@@ -1,6 +1,7 @@
 #ifndef INCLUDE_RENDER_HPP
 #define INCLUDE_RENDER_HPP
 
+#include "story.hpp"
 #include <SDL2/SDL_render.h>
 
 struct SDL_Window;

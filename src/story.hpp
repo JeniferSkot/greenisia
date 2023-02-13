@@ -40,4 +40,22 @@ void load_characters();
 void load_stories();
 
 
+struct StoryState
+{
+    bool active = false;
+    string story;
+    int phrase;
+};
+
+StoryState& story_state();
+
+void start_story(string name);
+bool in_story();
+
+void tick_story();
+void progress_story();
+
+void render_story();
+
+
 #endif // INCLUDE_STORY_HPP

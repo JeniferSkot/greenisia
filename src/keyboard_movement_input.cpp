@@ -1,10 +1,14 @@
 #include "keyboard.hpp"
+#include "story.hpp"
 
 
 SDL_Point keyboard_movement_input() // [-1, 1]
 {
     const uint8_t* keyboard = SDL_GetKeyboardState(nullptr);
     SDL_Point input {0, 0};
+
+    if(in_story())
+        return input;
 
     for(auto key : keys_up)
         if(keyboard[key]) {
