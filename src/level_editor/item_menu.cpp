@@ -1,6 +1,7 @@
 #include "item_menu.hpp"
 #include "render.hpp"
 #include "events.hpp"
+#include "state.hpp"
 #include "../item.hpp"
 #include "../camera.hpp"
 #include "../level.hpp"
@@ -67,5 +68,8 @@ void LE::click_item_menu(int x, int y)
 
     current_level->entity_data
         .items.push_back(ItemState{path, pos});
+
+    auto& state = current_state.collected_items;
+    state.push_back(true);
 }
 
