@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include <filesystem>
+#include <SDL2/SDL_rect.h>
 
 using std::string;
 using std::vector;
@@ -45,7 +46,9 @@ struct StoryState
 {
     bool active = false;
     string story;
-    int phrase;
+    std::size_t phrase;
+    float text_len;
+    float speed;
 };
 
 StoryState& story_state();
@@ -53,7 +56,7 @@ StoryState& story_state();
 void start_story(string name);
 bool in_story();
 
-void tick_story();
+void tick_story(int);
 void progress_story();
 
 void render_story();
