@@ -8,15 +8,17 @@ namespace level_editor
     extern SDL_Rect brush_menu;
     extern SDL_Rect toolbar;
     extern SDL_Rect level_select;
+    extern SDL_Rect item_menu;
 
     void position_menus();
 
     void render();
+    void render_map_border();
     void render_backgrounds();
     void render_brush_menu();
     void render_level_select();
     void render_toolbar();
-    void render_map_border();
+    void render_item_menu();
 
     // Store map resize markers position
     extern SDL_Point map_edge_markers;
