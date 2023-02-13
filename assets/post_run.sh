@@ -27,7 +27,7 @@ mkdir -p ../assets/maps
 
 
 cd assets/maps
-for map in ./*.map; do
+for map in *.map; do
     echo "Checking $map" 
     if ! cmp -s "$map" "../../../assets/maps/$map"; then
         echo "Updating $map"
@@ -35,4 +35,12 @@ for map in ./*.map; do
     fi
 done;
 
+cd ../level_data
+for lvl in *.lvl; do
+    echo "Checking $lvl" 
+    if ! cmp -s "$lvl" "../../../assets/maps/$lvl"; then
+        echo "Updating $lvl"
+        cp "$lvl" "../../../assets/maps/$lvl"
+    fi
+done;
 
