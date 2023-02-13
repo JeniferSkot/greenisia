@@ -17,8 +17,12 @@ void LE::item_mousedown(SDL_MouseButtonEvent& ev)
     } else if(ev.button == SDL_BUTTON_RIGHT) {
         if(target_item != -1)
             delete_item(target_item);
-    } else if(ev.button == SDL_BUTTON_MIDDLE) {
+    }
+
+    if(ev.button == SDL_BUTTON_MIDDLE) {
         show_item_story_menu();
+    } else {
+        hide_item_story_menu();
     }
 }
 
