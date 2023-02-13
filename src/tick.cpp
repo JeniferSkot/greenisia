@@ -23,14 +23,13 @@ void tick(int progress)
     if(LE::active) {
         LE::tick(progress);
     } else {
-        if(in_story()) {
-            tick_story();
-        } else {
-            move_coins(progress);
-            move_player(progress);
-            collect_coins();
-            collect_items();
-        }
+        if(in_story())
+            tick_story(progress);
+
+        move_coins(progress);
+        move_player(progress);
+        collect_coins();
+        collect_items();
 
         if(camera.w > 0 && camera.h > 0)
             adjust_zoom();

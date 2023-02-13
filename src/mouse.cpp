@@ -1,6 +1,7 @@
 #include "global.hpp"
 #include "camera.hpp"
 #include "coin.hpp"
+#include "story.hpp"
 #include <SDL2/SDL_events.h>
 #include <iostream>
 
@@ -12,12 +13,15 @@ bool spawning = false;
 
 void mousedown(SDL_MouseButtonEvent&)
 {
+    if(in_story())
+        progress_story();
+
     spawning = true;
 }
 
 void mousemotion(SDL_MouseMotionEvent& ev)
 {
-    if(!spawning)
+    if(!spawning || in_story())
         return;
 
     SDL_Point pos {ev.x, ev.y};
