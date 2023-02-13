@@ -15,8 +15,9 @@ TTF_Font* font()
 {
     static TTF_Font* font = [](){
         const string path = "assets/fonts/"
-            "comic_shanns_2.ttf";
-        const int size = 18;
+            "LiberationSerif-Regular.ttf";
+            //"comic_shanns_2.ttf";
+        const int size = 24;
 
         cout << "Loading font " << path << endl;
         
@@ -45,6 +46,8 @@ SDL_Texture* render_text(string const& text,
             size->x = 0;
             size->y = 0;
         }
+        cout << "Failed text render: " << text << endl;
+        cout << TTF_GetError() << endl;
         return nullptr;
     }
 
@@ -68,16 +71,38 @@ SDL_Texture* render_text(string const& text,
     return texture;
 }
 
+SDL_Point get_text_size(string const& text)
+{
+    const SDL_Color white {255, 255, 255, 255};
+    auto surface = TTF_RenderUTF8_Solid
+        (font(), text.c_str(), white);
+
+    if(surface == nullptr) {
+        cout << "Failed text render: " << text << endl;
+        cout << TTF_GetError() << endl;
+        return {0, 0};
+    }
+
+    SDL_Point size {
+        surface->w,
+        surface->h
+    };
+
+    SDL_FreeSurface(surface);
+
+    return size;
+}
+
 SDL_Texture* render_text_cached(string const& text,
                                 SDL_Point* size)
 {
-    struct CData
+    struct CacheData
     {
         SDL_Texture* texture = nullptr;
         SDL_Point size {0, 0};
     };
 
-    static std::map<string, CData> cache;
+    static std::map<string, CacheData> cache;
 
     auto itr = cache.find(text);
     if(itr != cache.end()) {

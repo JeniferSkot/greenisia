@@ -11,6 +11,7 @@ TTF_Font* font();
 
 SDL_Texture* render_text(std::string const& text,
                          SDL_Point* size = 0);
+SDL_Point get_text_size(std::string const& text);
 SDL_Texture* render_text_cached(std::string const& text,
                                 SDL_Point* size = 0);
 
