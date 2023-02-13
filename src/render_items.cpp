@@ -31,6 +31,9 @@ void render_item_names()
 {
     auto const& data = current_level->entity_data.items;
     for(auto const& state : data) {
+        if(state.collected && !show_debug_grid)
+            continue;
+
         auto const& entry = ::item(state.item);
         string name = entry.name;
 
