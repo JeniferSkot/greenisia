@@ -75,7 +75,8 @@ void on_keydown(SDL_KeyboardEvent& ev)
 #endif
 
 #ifdef LEVEL_EDITOR
-    if(scancode == SDL_SCANCODE_L) {
+    if(scancode == SDL_SCANCODE_L ||
+       scancode == SDL_SCANCODE_R) {
         LE::active = !LE::active;
         if(LE::active) {
             cout << "Level Editor: on" << endl;

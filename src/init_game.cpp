@@ -64,7 +64,7 @@ void init_game()
     cout << endl;
     cout << "*****************************" << endl;
     cout << "Built with LEVEL_EDITOR flag" << endl;
-    cout << "Press L to edit current level" << endl;
+    cout << "Press L or R for level editor" << endl;
     cout << "*****************************" << endl;
 #endif
 
