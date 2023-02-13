@@ -70,6 +70,6 @@ void LE::click_item_menu(int x, int y)
         .items.push_back(ItemState{path, pos});
 
     auto& state = current_state.collected_items;
-    state.push_back(true);
+    state.push_back(false);
 }
 
