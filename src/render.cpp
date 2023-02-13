@@ -20,13 +20,15 @@ void render()
     render_coins();
     render_background(1, 10);
     render_coin_twinkles();
-    render_item_names();
 
     if(show_debug_grid) {
         render_map();
         render_item_hitboxes();
         render_player_hitbox();
+        render_item_stories();
     }
+
+    render_item_names();
 
     if(LE::active)
         LE::render();

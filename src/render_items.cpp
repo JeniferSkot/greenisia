@@ -3,6 +3,7 @@
 #include "level.hpp"
 #include "textures.hpp"
 #include "camera.hpp"
+#include "text.hpp"
 
 
 void render_items()
@@ -25,7 +26,48 @@ void render_items()
 
 void render_item_names()
 {
+    auto const& data = current_level->entity_data.items;
+    for(auto const& state : data) {
+        auto const& entry = ::item(state.item);
+        string name = entry.name;
 
+        SDL_Point size;
+        auto text = render_text_cached(name, &size);
+
+        SDL_Rect area {
+            state.pos.x + entry.size.x / 2,
+            state.pos.y,
+            size.x, size.y
+        };
+        apply_camera(area.x, area.y);
+        area.x -= size.x / 2;
+        area.y -= size.y + 8;
+
+        SDL_RenderCopy(rnd, text, nullptr, &area);
+    }
+}
+
+void render_item_stories()
+{
+    auto const& data = current_level->entity_data.items;
+    for(auto const& state : data) {
+        auto const& entry = ::item(state.item);
+        string cue = state.story_cue;
+
+        SDL_Point size;
+        auto text = render_text_cached(cue, &size);
+
+        SDL_Rect area {
+            state.pos.x + entry.size.x / 2,
+            state.pos.y + entry.size.y,
+            size.x, size.y
+        };
+        apply_camera(area.x, area.y);
+        area.x -= size.x / 2;
+        area.y += 8;
+
+        SDL_RenderCopy(rnd, text, nullptr, &area);
+    }
 }
 
 void render_item_hitboxes()
