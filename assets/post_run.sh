@@ -29,18 +29,20 @@ mkdir -p ../assets/maps
 cd assets/maps
 for map in *.map; do
     echo "Checking $map" 
-    if ! cmp -s "$map" "../../../assets/maps/$map"; then
+    real="../../../assets/maps/$map"
+    if ! cmp -s "$map" "$real"; then
         echo "Updating $map"
-        cp "$map" "../../../assets/maps/$map"
+        cp "$map" "$real"
     fi
 done;
 
 cd ../level_data
 for lvl in *.lvl; do
     echo "Checking $lvl" 
-    if ! cmp -s "$lvl" "../../../assets/maps/$lvl"; then
+    real="../../../assets/level_data/$lvl"
+    if ! cmp -s "$lvl" "$real"; then
         echo "Updating $lvl"
-        cp "$lvl" "../../../assets/maps/$lvl"
+        cp "$lvl" "$real"
     fi
 done;
 
