@@ -3,14 +3,38 @@
 #include "map.hpp"
 #include "level.hpp"
 #include <SDL2/SDL.h>
+#include <algorithm>
+
+using std::min;
+using std::max;
 
 
 void render_map()
 {
     Map& map = current_level->map;
-    for(int y = 0; y < map.height; y++)
-    for(int x = 0; x < map.width; x++)
+
+    SDL_Point edge1 {0, 0};
+    SDL_Point edge2 {camera.w, camera.h};
+    undo_camera(edge1);
+    undo_camera(edge2);
+
+    // Render only on-screen squares
+    int left = edge1.x / block_size.x;
+    int top = edge1.y / block_size.y;
+    int right = edge2.x / block_size.x;
+    int bottom = edge2.y / block_size.y;
+
+    left = max(0, left);
+    top = max(0, top);
+    bottom = min(bottom, map.height - 1);
+    right = min(right, map.width - 1);
+
+    for(int y = top; y <= bottom; y++)
+    for(int x = left; x <= right; x++)
     {
+        Block tile = *map.at(x, y);
+        if(tile == B_AIR && zoom < 0.5)
+            continue;
         SDL_Rect block_area {
             x * block_size.x,
             y * block_size.y,
