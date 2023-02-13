@@ -49,17 +49,30 @@ void load_story(fs::path path)
     Story& story = stories()[path];
 
     string speaker = "";
+    string text = "";
 
     for (string line; std::getline(file, line); ) {
         if(line[0] == '#')
             continue;
 
         if(line[0] == '>') {
+            if(!text.empty()) {
+                Speech speech {speaker, text};
+                story.speeches.push_back(speech);
+            }
             speaker = trim(line.substr(1));
+            text = "";
             continue;
         }
 
-        Speech speech {speaker, trim(line)};
+        line = trim(line);
+        if(!text.empty())
+            text += "\n";
+        text += line;
+    }
+
+    {
+        Speech speech {speaker, text};
         story.speeches.push_back(speech);
     }
 }

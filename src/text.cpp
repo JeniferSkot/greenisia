@@ -38,8 +38,8 @@ SDL_Texture* render_text(string const& text,
                          SDL_Point* size)
 {
     const SDL_Color white {255, 255, 255, 255};
-    auto surface = TTF_RenderUTF8_Blended
-        (font(), text.c_str(), white);
+    auto surface = TTF_RenderUTF8_Blended_Wrapped
+        (font(), text.c_str(), white, 0);
 
     if(surface == nullptr) {
         if(size) {
@@ -74,8 +74,8 @@ SDL_Texture* render_text(string const& text,
 SDL_Point get_text_size(string const& text)
 {
     const SDL_Color white {255, 255, 255, 255};
-    auto surface = TTF_RenderUTF8_Solid
-        (font(), text.c_str(), white);
+    auto surface = TTF_RenderUTF8_Solid_Wrapped
+        (font(), text.c_str(), white, 0);
 
     if(surface == nullptr) {
         cout << "Failed text render: " << text << endl;
