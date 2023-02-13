@@ -10,6 +10,9 @@ void render_items()
 {
     auto const& data = current_level->entity_data.items;
     for(auto const& state : data) {
+        if(state.collected)
+            continue;
+
         auto const& entry = ::item(state.item);
         auto texture = get_texture(entry.sprite);
         SDL_Rect area {

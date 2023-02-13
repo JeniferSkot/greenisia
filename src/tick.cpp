@@ -3,6 +3,7 @@
 #include <SDL2/SDL_keyboard.h>
 #include "player.hpp"
 #include "coin.hpp"
+#include "item.hpp"
 #include "level_editor/global.hpp"
 #include "camera.hpp"
 
@@ -24,6 +25,7 @@ void tick(int progress)
         move_coins(progress);
         move_player(progress);
         collect_coins();
+        collect_items();
 
         if(camera.w > 0 && camera.h > 0)
             adjust_zoom();

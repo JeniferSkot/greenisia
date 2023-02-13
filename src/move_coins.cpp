@@ -246,7 +246,7 @@ void collect_coins()
 }
 
 
-static bool has_player_collision(Coin const& coin)
+bool has_player_collision(Coin const& coin)
 {
     auto const& pos = coin.pos;
     const int range = block_size.x;

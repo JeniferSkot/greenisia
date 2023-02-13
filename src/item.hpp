@@ -28,4 +28,6 @@ void render_item_names();
 void render_item_hitboxes();
 void render_item_stories();
 
+void collect_items();
+
 #endif // INCLUDE_ITEM_HPP
