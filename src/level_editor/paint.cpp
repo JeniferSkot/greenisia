@@ -25,7 +25,7 @@ void LE::paint_line(SDL_Point p1,
     SDL_Point delta { p2.x - p1.x, p2.y - p1.y };
 
     if(delta.x == 0 && delta.y == 0) {
-        paint(p1.x, p2.x, brush);
+        paint(p1.x, p2.y, brush);
         return;
     }
 
