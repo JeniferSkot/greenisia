@@ -1,5 +1,8 @@
 #include "levels/tutorial.hpp"
 #include "level.hpp"
+#include <filesystem>
+
+namespace fs = std::filesystem;
 
 
 Level tutorial::level;
@@ -20,9 +23,18 @@ void tutorial::init_map()
 
 void tutorial::init_background()
 {
-    vector<string> area_manifests {
-        "assets/bg/tutorial/cave.bgman"
-    };
+    vector<string> area_manifests;
+
+    const fs::path dir = "assets/bg/tutorial/";
+    const string ext = ".bgman";
+
+    fs::directory_iterator end;
+    fs::directory_iterator begin(dir);
+    for(auto itr = begin; itr != end; itr++) {
+        if(itr->path().extension() != ext)
+            continue;
+        area_manifests.push_back(itr->path());
+    }
 
     for(string manifest : area_manifests) {
         Background bg = create_background(manifest);
