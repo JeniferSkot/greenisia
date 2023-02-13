@@ -9,10 +9,14 @@ namespace LE = level_editor;
 void LE::delete_item(int index)
 {
     auto& items = current_level->entity_data.items;
-    std::swap(items.back(), items.at(index));
+    std::swap(items[items.size() - 1], items[index]);
     items.pop_back();
 
     auto& cache = current_state.collected_items;
-    std::swap(cache.back(), cache.at(index));
+    {
+        bool tmp = cache.back();
+        cache.back() = cache[index];
+        cache[index] = tmp;
+    }
     cache.pop_back();
 }
