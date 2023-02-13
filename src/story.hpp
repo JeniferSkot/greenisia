@@ -59,4 +59,10 @@ void progress_story();
 void render_story();
 
 
+/* Separate text texture cache. */
+struct SDL_Texture;
+SDL_Texture* render_story_text(string const& text,
+                               SDL_Point* size);
+void clear_story_text_cache();
+
 #endif // INCLUDE_STORY_HPP
