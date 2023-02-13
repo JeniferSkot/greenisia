@@ -8,6 +8,7 @@ namespace level_editor
     void pick_brush(int x, int y, int brush_index);
     void click_level_select(int x, int y);
     void click_toolbar(int x, int y);
+    void click_item_menu(int x, int y);
 }
 
 #endif // INCLUDE_LE_EVENTS_HPP

@@ -18,7 +18,7 @@ struct ItemState
     fs::path item;
     SDL_Point pos;
 
-    fs::path story_cue;
+    fs::path story_cue = "";
 
     bool collected = false;
 };

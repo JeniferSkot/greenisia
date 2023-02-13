@@ -32,5 +32,12 @@ void LE::on_menu_click(int x, int y, int button)
         click_toolbar(x, y);
         return;
     }
+
+    if(SDL_PointInRect(&point, &item_menu)) {
+        x -= item_menu.x;
+        y -= item_menu.y;
+        click_item_menu(x, y);
+        return;
+    }
 }
 

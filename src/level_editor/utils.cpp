@@ -15,7 +15,8 @@ bool LE::in_menu(int x, int y)
     SDL_Rect* menus[] {
         &brush_menu,
         &toolbar,
-        &level_select
+        &level_select,
+        &item_menu
     };
 
     for(auto menu : menus)
