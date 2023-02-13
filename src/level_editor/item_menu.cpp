@@ -19,8 +19,8 @@ void LE::show_item_menu()
     item_menu.w = w * 128 + (w + 1) * 8;
     item_menu.h = h * 128 + (h + 1) * 8;
 
-    item_menu.y = toolbar.y + toolbar.h + 8;
     item_menu.x = toolbar.x + toolbar.w - item_menu.w;
+    item_menu.y = toolbar.y + toolbar.h + 8;
 }
 
 void LE::hide_item_menu()

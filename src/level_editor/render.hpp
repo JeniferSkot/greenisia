@@ -9,6 +9,7 @@ namespace level_editor
     extern SDL_Rect toolbar;
     extern SDL_Rect level_select;
     extern SDL_Rect item_menu;
+    extern SDL_Rect item_story_menu;
 
     void position_menus();
 
@@ -19,6 +20,7 @@ namespace level_editor
     void render_level_select();
     void render_toolbar();
     void render_item_menu();
+    void render_item_story_menu();
 
     // Store map resize markers position
     extern SDL_Point map_edge_markers;

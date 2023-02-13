@@ -12,7 +12,7 @@
 namespace LE = level_editor;
 
 LE::MouseMode LE::mmode = MM_NONE;
-int LE::dragged_id = -1;
+int LE::target_item = -1;
 
 SDL_FPoint LE::mouse {0, 0};
 SDL_FPoint LE::last_mouse {0, 0};
@@ -29,12 +29,10 @@ void LE::on_mousedown(SDL_MouseButtonEvent& ev)
     }
 
     if(is_draggable(ev.x, ev.y)) {
-        if(is_player(ev.x, ev.y))
+        if(is_player(ev.x, ev.y)) {
             mmode = MM_DRAGGING_PLAYER;
-        else if(is_item(ev.x, ev.y)) {
-            mmode = MM_DRAGGING_ITEM;
-            dragged_id =
-                get_item_entry_index(ev.x, ev.y);
+        } else if(is_item(ev.x, ev.y)) {
+            item_mousedown(ev);
         }
         return;
     }

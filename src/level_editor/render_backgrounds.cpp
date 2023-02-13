@@ -20,6 +20,7 @@ void LE::render_backgrounds()
 
         SDL_RenderFillRect(rnd, &toolbar);
         SDL_RenderFillRect(rnd, &item_menu);
+        SDL_RenderFillRect(rnd, &item_story_menu);
     }
 
     SDL_SetRenderDrawBlendMode(rnd, SDL_BLENDMODE_NONE);

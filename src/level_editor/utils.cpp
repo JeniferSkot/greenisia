@@ -16,7 +16,8 @@ bool LE::in_menu(int x, int y)
         &brush_menu,
         &toolbar,
         &level_select,
-        &item_menu
+        &item_menu,
+        &item_story_menu
     };
 
     for(auto menu : menus)

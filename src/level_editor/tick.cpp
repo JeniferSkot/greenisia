@@ -102,7 +102,7 @@ void LE::tick_dragging_item(int)
 {
     Level& level = *current_level;
     auto& items = level.entity_data.items;
-    auto& pos = items[dragged_id].pos;
+    auto& pos = items[target_item].pos;
 
     SDL_FPoint delta {
         mouse.x - last_mouse.x,

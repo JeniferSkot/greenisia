@@ -39,5 +39,12 @@ void LE::on_menu_click(int x, int y, int button)
         click_item_menu(x, y);
         return;
     }
+
+    if(SDL_PointInRect(&point, &item_story_menu)) {
+        x -= item_story_menu.x;
+        y -= item_story_menu.y;
+        click_item_story_menu(x, y);
+        return;
+    }
 }
 

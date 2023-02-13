@@ -16,7 +16,7 @@ namespace level_editor
     };
 
     extern MouseMode mmode;
-    extern int dragged_id;
+    extern int target_item;
 
     // In map coordinates
     extern SDL_FPoint mouse;
