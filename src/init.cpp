@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include "global.hpp"
 #include "render.hpp"
 
@@ -26,6 +27,10 @@ int init()
         return 1;
     }
 
+    if(TTF_Init()) {
+        cout << "Error: " << TTF_GetError() << endl;
+        return 1;
+    }
 
     if(create_window())
         return 1;

@@ -7,6 +7,7 @@
 #include "map.hpp"
 #include "camera.hpp"
 #include "level.hpp"
+#include "text.hpp"
 #include <iostream>
 
 using std::cout;
@@ -31,6 +32,7 @@ void init_game()
     load_items();
     load_characters();
     load_stories();
+    font();
 
     cout << "Game loaded!" << endl;
 
