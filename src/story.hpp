@@ -15,6 +15,7 @@ struct Character
 {
     string name;
     fs::path avatar;
+    bool right_side = false;
 };
 
 struct Speech

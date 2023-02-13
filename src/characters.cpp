@@ -13,7 +13,8 @@ Character& character(fs::path key)
 {
     static Character unknown {
         "E""n""t""i""t""y 3""0""3",
-        "as""se""ts/cha""ract""ers/.d""efau""lt.p""ng"
+        "as""se""ts/cha""ract""ers/.d""efau""lt.p""ng",
+        true
     };
 
     auto itr = characters().find(key);

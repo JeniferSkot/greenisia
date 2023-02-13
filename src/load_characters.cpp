@@ -61,6 +61,8 @@ void load_character(fs::path path)
         trim(input[0]),
         trim(input[1])
     };
+    if(trim(input[2]) == ":right")
+        chr.right_side = true;
 
     if(!chr.avatar.empty() && !fs::exists(chr.avatar))
         chr.avatar = "assets/characters" / chr.avatar;
