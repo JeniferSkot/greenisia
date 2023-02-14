@@ -21,7 +21,7 @@ __CXXFLAGS=-O2 -g -std=c++17 \
 
 __LDFLAGS=${__CXXFLAGS} \
 	-sASSERTIONS=1 \
-	-sINITIAL_MEMORY=131072000 \
+	-sINITIAL_MEMORY=330039296 \
 	#-L${HOME}/workspace/cpp/sdl/libs-emsdk/build/ \
 	#-sALLOW_MEMORY_GROWTH=1 
 	#-sENVIRONMENT=web \

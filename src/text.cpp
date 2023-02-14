@@ -38,8 +38,14 @@ SDL_Texture* render_text(string const& text,
                          SDL_Point* size)
 {
     const SDL_Color white {255, 255, 255, 255};
+// https://github.com/emscripten-core/emscripten/issues/17657
+#ifndef __EMSCRIPTEN__
     auto surface = TTF_RenderUTF8_Blended_Wrapped
         (font(), text.c_str(), white, 0);
+#else
+    auto surface = TTF_RenderUTF8_Blended_Wrapped
+        (font(), text.c_str(), white, 700);
+#endif
 
     if(surface == nullptr) {
         if(size) {
@@ -74,8 +80,14 @@ SDL_Texture* render_text(string const& text,
 SDL_Point get_text_size(string const& text)
 {
     const SDL_Color white {255, 255, 255, 255};
+// https://github.com/emscripten-core/emscripten/issues/17657
+#ifndef __EMSCRIPTEN__
     auto surface = TTF_RenderUTF8_Solid_Wrapped
         (font(), text.c_str(), white, 0);
+#else
+    auto surface = TTF_RenderUTF8_Solid_Wrapped
+        (font(), text.c_str(), white, 700);
+#endif
 
     if(surface == nullptr) {
         cout << "Failed text render: " << text << endl;

@@ -66,8 +66,16 @@ void load_story(fs::path path)
         }
 
         line = trim(line);
+
+// Issue https://github.com/emscripten-core/emscripten/issues/17657
+#ifndef __EMSCRIPTEN__
         if(!text.empty())
             text += "\n";
+#else
+        if(!text.empty())
+            text += " ";
+#endif
+
         text += line;
     }
 
