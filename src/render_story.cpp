@@ -166,7 +166,7 @@ void render_story_text()
     SDL_Rect dest {
         speaker.right_side
             ? (area.x + 24)
-            : (dest.x + 24),
+            : (area.x + camera.h / 4 + 8 + 24),
         area.y + 8 + name_size.y + 24,
         size.x,
         size.y

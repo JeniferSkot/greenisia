@@ -1,6 +1,7 @@
 #include "render.hpp"
 #include "../block.hpp"
 #include "../camera.hpp"
+#include <algorithm>
 
 namespace LE = level_editor;
 

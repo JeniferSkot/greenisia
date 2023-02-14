@@ -1,5 +1,6 @@
 #include "map.hpp"
 #include "events.hpp"
+#include <algorithm>
 
 namespace LE = level_editor;
 
