@@ -25,6 +25,8 @@ bool show_debug_grid = true;
 
 void init_game()
 {
+    render_loading_screen();
+
     init_levels();
     init_player_sprites();
     load_player_sprites();

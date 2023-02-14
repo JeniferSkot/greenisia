@@ -25,5 +25,7 @@ const bool show_debug_grid = false;
 
 void render();
 
+void render_loading_screen();
+
 
 #endif // INCLUDE_RENDER_HPP
