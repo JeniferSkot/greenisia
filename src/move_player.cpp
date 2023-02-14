@@ -10,7 +10,8 @@ void move_player(int progress)
 {
     auto input = keyboard_movement_input();
 
-    player.old_pos = player.pos;
+    player.last_pos.x = player.pos.x;
+    player.last_pos.y = player.pos.y;
 
     move_player_horizontal(progress, input.x);
     player_horizontal_collision();
@@ -27,10 +28,11 @@ void move_player_horizontal(int progress, int input_x)
 
     float time = progress / 1000.0f;
     auto& pos = player.pos;
+    auto& lpos = player.last_pos;
 
     pos.x += input_x * player.speed * time;
 
-    float delta_x = abs(player.old_pos.x - pos.x);
+    float delta_x = abs(lpos.x - pos.x);
     player.sprite_time += delta_x;
 }
 
@@ -67,7 +69,7 @@ void player_horizontal_collision()
     auto const& map = current_level->map;
     auto& pos = player.pos;
     auto const& size = player.size;
-    auto const& old_pos = player.old_pos;
+    auto const& lpos = player.last_pos;
 
     if(pos.x < 0)
         pos.x = 0;
@@ -81,9 +83,9 @@ void player_horizontal_collision()
     int y1 = pos.y / bsize.y;
     int y2 = (pos.y + size.y - 1) / bsize.y;
 
-    float delta_x = pos.x - old_pos.x;
+    float delta_x = pos.x - lpos.x;
     if(delta_x > 0) { // Right
-        int x1 = (old_pos.x + size.x) / bsize.x;
+        int x1 = (lpos.x + size.x) / bsize.x;
         int x2 = (pos.x + size.x) / bsize.x + 1;
         if(player.velocity == 0)
             x2++;
@@ -113,7 +115,7 @@ void player_horizontal_collision()
             } else break; // Prevent wall climbing
         }
     } else if(delta_x < 0) { // Left
-        int x1 = old_pos.x / bsize.x;
+        int x1 = lpos.x / bsize.x;
         int x2 = pos.x / bsize.x - 1;
         if(player.velocity == 0)
             x2--;
@@ -152,7 +154,7 @@ void player_vertical_collision()
     auto const& map = current_level->map;
     auto& pos = player.pos;
     auto& velocity = player.velocity;
-    auto const& old_pos = player.old_pos;
+    auto const& lpos = player.last_pos;
     auto const& size = player.size;
 
     if(pos.y < 0) {
@@ -173,9 +175,9 @@ void player_vertical_collision()
     int x1 = pos.x / bsize.x;
     int x2 = (pos.x + size.x) / bsize.x;
 
-    float delta_y = pos.y - old_pos.y;
+    float delta_y = pos.y - lpos.y;
     if(delta_y > 0) { // Down
-        int y1 = (old_pos.y + size.y) / bsize.y;
+        int y1 = (lpos.y + size.y) / bsize.y;
         int y2 = (pos.y + size.y) / bsize.y;
 
         for(int y = y1; y <= y2; y++)
@@ -192,7 +194,7 @@ void player_vertical_collision()
             }
         }
     } else if (delta_y < 0) { // Up
-        int y1 = old_pos.y / bsize.y;
+        int y1 = lpos.y / bsize.y;
         int y2 = pos.y / bsize.y;
 
         for(int y = y1; y >= y2; y--)

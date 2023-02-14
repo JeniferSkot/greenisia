@@ -8,7 +8,7 @@ struct SDL_Texture;
 struct Player
 {
     SDL_FPoint pos;
-    SDL_FPoint old_pos; // TODO rename to last_pos
+    SDL_FPoint last_pos;
     SDL_Point size {200, 250}; // TODO merge with pos
     float speed = 1300;
     float velocity = 0;
