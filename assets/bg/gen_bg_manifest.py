@@ -6,7 +6,7 @@
 
 # As output, first line contains the composite image size
 # Every next line contains "${path} ${size}" pair.
-# Sizes are formatted in magick's default format:
+# Sizes are formatted in magick's default trim format:
 # ${width}x${height}+${offset_x}+${offset_y}
 
 import sys

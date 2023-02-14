@@ -9,6 +9,6 @@ echo "Trimming $1"
 
 tmp=${1}.tmp
 mv $1 $tmp
-magick $tmp -trim $1
+convert $tmp -trim $1
 rm $tmp
 

@@ -8,7 +8,7 @@ for level in */; do
         
         echo "Generating $output:"
         for img in ${area}*.png; do
-            magick ${img} -format "$area%f %@\n" \
+            convert ${img} -format "$area%f %@\n" \
                 info:- ;
         done | ./gen_bg_manifest.py | tee $output
         
