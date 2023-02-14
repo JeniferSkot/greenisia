@@ -107,6 +107,7 @@ void render_avatars()
     else
         SDL_RenderCopy(rnd, texture, nullptr, &dest);
 
+    if(false)
     /* Border */ {
         SDL_SetRenderDrawColor(rnd, 0, 0, 0, 255);
 
