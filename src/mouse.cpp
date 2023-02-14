@@ -16,7 +16,8 @@ void mousedown(SDL_MouseButtonEvent&)
     if(in_story())
         progress_story();
 
-    spawning = true;
+    // Feature not meant for production
+    //spawning = true;
 }
 
 void mousemotion(SDL_MouseMotionEvent& ev)
