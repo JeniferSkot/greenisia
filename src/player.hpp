@@ -22,6 +22,13 @@ extern Player player;
 enum PlayerState
 {
     PS_RUNNING,
+    PS_WALKING,
+    PS_IDLING,
+    PS_JUMPING,
+    PS_LANDING,
+    PS_RAISING,
+    PS_FALLING,
+    PS_ATTACKING,
 
     PS_LAST
 };
