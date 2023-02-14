@@ -99,7 +99,13 @@ void render_avatars()
         camera.h / 4
     };
 
-    SDL_RenderCopy(rnd, texture, nullptr, &dest);
+    if(speaker.right_side)
+        SDL_RenderCopyEx(rnd, texture,
+                         nullptr, &dest,
+                         0, nullptr,
+                         SDL_FLIP_HORIZONTAL);
+    else
+        SDL_RenderCopy(rnd, texture, nullptr, &dest);
 
     /* Border */ {
         SDL_SetRenderDrawColor(rnd, 0, 0, 0, 255);
