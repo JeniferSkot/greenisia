@@ -52,6 +52,8 @@ void LE::click_item_menu(int x, int y)
     y /= 128 + 8;
 
     int index = x + y * w;
+    if(index >= items.size())
+        return;
 
     auto itr = items.cbegin();
     for(int i = 0; i < index; i++)
