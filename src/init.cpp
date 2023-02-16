@@ -8,8 +8,8 @@
 using namespace std;
 
 static const SDL_Point window_size {
-    1680 * 7 / 10,
-    1050 * 7 / 10
+    1680 * 7 / 10, // 1176
+    1050 * 7 / 10  // 735
 };
 static int create_window();
 static int create_renderer();
